@@ -13,8 +13,8 @@
 import pickle
 import sys
 from sklearn.cross_validation import StratifiedShuffleSplit
-sys.path.append("../tools/")
-from feature_format import featureFormat, targetFeatureSplit
+sys.path.append("tools/")
+from feature_format import feature_format, target_feature_split
 
 PERF_FORMAT_STRING = "\
 \tAccuracy: {:>0.{display_precision}f}\tPrecision: {:>0.{display_precision}f}\t\
@@ -23,8 +23,8 @@ RESULTS_FORMAT_STRING = "\tTotal predictions: {:4d}\tTrue positives: {:4d}\tFals
 \tFalse negatives: {:4d}\tTrue negatives: {:4d}"
 
 def test_classifier(clf, dataset, feature_list, folds = 1000):
-    data = featureFormat(dataset, feature_list, sort_keys = True)
-    labels, features = targetFeatureSplit(data)
+    data = feature_format(dataset, feature_list, sort_keys = True)
+    labels, features = target_feature_split(data)
     cv = StratifiedShuffleSplit(labels, folds, random_state = 42)
     true_negatives = 0
     false_negatives = 0

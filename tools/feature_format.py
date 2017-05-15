@@ -15,25 +15,30 @@
 
     In addition to converting a dictionary to a numpy 
     array, you may want to separate the labels from the
-    features--this is what targetFeatureSplit is for
+    features--this is what target_feature_split is for
 
     so, if you want to have the poi label as the target,
     and the features you want to use are the person's
     salary and bonus, here's what you would do:
 
     feature_list = ["poi", "salary", "bonus"] 
-    data_array = featureFormat( data_dictionary, feature_list )
-    label, features = targetFeatureSplit(data_array)
+    data_array = feature_format( data_dictionary, feature_list )
+    label, features = target_feature_split(data_array)
 
-    the line above (targetFeatureSplit) assumes that the
+    the line above (target_feature_split) assumes that the
     label is the _first_ item in feature_list--very important
     that poi is listed first!
 """
 
-
 import numpy as np
 
-def featureFormat( dictionary, features, remove_NaN=True, remove_all_zeroes=True, remove_any_zeroes=False, sort_keys = False):
+
+def feature_format(dictionary, 
+                   features, 
+                   remove_NaN=True,
+                   remove_all_zeroes=True, 
+                   remove_any_zeroes=False,
+                   sort_keys=False):
     """ convert dictionary to numpy array of features
         remove_NaN = True will convert "NaN" string to 0.0
         remove_all_zeroes = True will omit any data points for which
@@ -47,7 +52,6 @@ def featureFormat( dictionary, features, remove_NaN=True, remove_all_zeroes=True
         NOTE: first feature is assumed to be 'poi' and is not checked for
             removal for zero or missing values.
     """
-
 
     return_list = []
 
@@ -70,9 +74,9 @@ def featureFormat( dictionary, features, remove_NaN=True, remove_all_zeroes=True
                 print "error: key ", feature, " not present"
                 return
             value = dictionary[key][feature]
-            if value=="NaN" and remove_NaN:
+            if value == "NaN" and remove_NaN:
                 value = 0
-            tmp_list.append( float(value) )
+            tmp_list.append(float(value))
 
         # Logic for deciding whether or not to add the data point.
         append = True
@@ -81,31 +85,31 @@ def featureFormat( dictionary, features, remove_NaN=True, remove_all_zeroes=True
             test_list = tmp_list[1:]
         else:
             test_list = tmp_list
-        ### if all features are zero and you want to remove
-        ### data points that are all zero, do that here
+        # if all features are zero and you want to remove
+        # data points that are all zero, do that here
         if remove_all_zeroes:
             append = False
             for item in test_list:
                 if item != 0 and item != "NaN":
                     append = True
                     break
-        ### if any features for a given data point are zero
-        ### and you want to remove data points with any zeroes,
-        ### handle that here
+        # if any features for a given data point are zero
+        # and you want to remove data points with any zeroes,
+        # handle that here
         if remove_any_zeroes:
             if 0 in test_list or "NaN" in test_list:
                 append = False
-        ### Append the data point if flagged for addition.
+        # Append the data point if flagged for addition.
         if append:
-            return_list.append( np.array(tmp_list) )
+            return_list.append(np.array(tmp_list))
 
     return np.array(return_list)
 
 
-def targetFeatureSplit( data ):
+def target_feature_split(data):
     """ 
         given a numpy array like the one returned from
-        featureFormat, separate out the first feature
+        feature_format, separate out the first feature
         and put it into its own list (this should be the 
         quantity you want to predict)
 
@@ -118,11 +122,7 @@ def targetFeatureSplit( data ):
     target = []
     features = []
     for item in data:
-        target.append( item[0] )
-        features.append( item[1:] )
+        target.append(item[0])
+        features.append(item[1:])
 
     return target, features
-
-
-
-

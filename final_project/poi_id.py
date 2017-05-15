@@ -2,9 +2,9 @@
 
 import sys
 import pickle
-sys.path.append("../tools/")
+sys.path.append("tools/")
 
-from feature_format import featureFormat, targetFeatureSplit
+from feature_format import feature_format, target_feature_split
 from tester import dump_classifier_and_data
 
 ### Task 1: Select what features you'll use.
@@ -22,8 +22,8 @@ with open("final_project_dataset.pkl", "r") as data_file:
 my_dataset = data_dict
 
 ### Extract features and labels from dataset for local testing
-data = featureFormat(my_dataset, features_list, sort_keys = True)
-labels, features = targetFeatureSplit(data)
+data = feature_format(my_dataset, features_list, sort_keys = True)
+labels, features = target_feature_split(data)
 
 ### Task 4: Try a varity of classifiers
 ### Please name your classifier clf for easy export below.

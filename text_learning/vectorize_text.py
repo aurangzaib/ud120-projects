@@ -1,11 +1,10 @@
 #!/usr/bin/python
-
 import os
 import pickle
-import re
 import sys
+from sklearn.feature_extraction.text import TfidfVectorizer
 
-sys.path.append( "../tools/" )
+sys.path.append("tools/")
 from parse_out_email_text import parseOutText
 
 """
@@ -21,55 +20,41 @@ from parse_out_email_text import parseOutText
 
     The data is stored in lists and packed away in pickle files at the end.
 """
-
-
-from_sara  = open("from_sara.txt", "r")
-from_chris = open("from_chris.txt", "r")
+from_sara = open("text_learning/from_sara.txt", "r")
+from_chris = open("text_learning/from_chris.txt", "r")
 
 from_data = []
 word_data = []
 
-### temp_counter is a way to speed up the development--there are
-### thousands of emails from Sara and Chris, so running over all of them
-### can take a long time
-### temp_counter helps you only look at the first 200 emails in the list so you
-### can iterate your modifications quicker
-temp_counter = 0
-
-
+# preprocess all the emails
 for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
     for path in from_person:
-        ### only look at first 200 emails when developing
-        ### once everything is working, remove this line to run over full dataset
-        temp_counter += 1
-        if temp_counter < 200:
-            path = os.path.join('..', path[:-1])
-            print path
-            email = open(path, "r")
+        path = os.path.join('..', path[:-1])
+        # paths of the emails   
+        email = open(path, "r")
+        # texts of the email
+        # remove punctuation and apply stemming
+        email_text = parseOutText(email)
+        from_data.append(0 if name is "sara" else 1)
+        # remove these words from the email text
+        for _word_ in ["sara", "shackleton", "chris", "germani"]:
+            email_text = email_text.replace(_word_, "")
+        # save email_text in word_data
+        word_data.append(email_text)
+        # close the stream of the email
+        email.close()
 
-            ### use parseOutText to extract the text from the opened email
+# print "word data:\n\n", word_data
+# create text-frequency inverse document frequency vectorizer
+vectorizer = TfidfVectorizer(min_df=1, stop_words="english")
+# fit data and get the usage count of the features
+vector_count = vectorizer.fit_transform(word_data).toarray()
+# get the list of features names
+features_list = vectorizer.get_feature_names()
+for _index_ in range(len(features_list)):
+    print (features_list[_index_], "-->", vector_count[0][_index_])
 
-            ### use str.replace() to remove any instances of the words
-            ### ["sara", "shackleton", "chris", "germani"]
-
-            ### append the text to word_data
-
-            ### append a 0 to from_data if email is from Sara, and 1 if email is from Chris
-
-
-            email.close()
-
-print "emails processed"
 from_sara.close()
 from_chris.close()
-
-pickle.dump( word_data, open("your_word_data.pkl", "w") )
-pickle.dump( from_data, open("your_email_authors.pkl", "w") )
-
-
-
-
-
-### in Part 4, do TfIdf vectorization here
-
-
+pickle.dump(word_data, open("your_word_data.pkl", "w"))
+pickle.dump(from_data, open("your_email_authors.pkl", "w"))

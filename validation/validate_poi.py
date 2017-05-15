@@ -12,8 +12,8 @@
 
 import pickle
 import sys
-sys.path.append("../tools/")
-from feature_format import featureFormat, targetFeatureSplit
+sys.path.append("tools/")
+from feature_format import feature_format, target_feature_split
 
 data_dict = pickle.load(open("../final_project/final_project_dataset.pkl", "r") )
 
@@ -22,8 +22,8 @@ data_dict = pickle.load(open("../final_project/final_project_dataset.pkl", "r") 
 ### have a different feature list when you do the final project.
 features_list = ["poi", "salary"]
 
-data = featureFormat(data_dict, features_list)
-labels, features = targetFeatureSplit(data)
+data = feature_format(data_dict, features_list)
+labels, features = target_feature_split(data)
 
 
 
