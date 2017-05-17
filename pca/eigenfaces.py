@@ -1,39 +1,29 @@
-"""
-===================================================
-Faces recognition example using eigenfaces and SVMs
-===================================================
-
-The dataset used in this example is a preprocessed excerpt of the
-"Labeled Faces in the Wild", aka LFW_:
-
-  http://vis-www.cs.umass.edu/lfw/lfw-funneled.tgz (233MB)
-
-  .. _LFW: http://vis-www.cs.umass.edu/lfw/
-
-  original source: http://scikit-learn.org/stable/auto_examples/applications/face_recognition.html
-
-"""
-
-
-
-print __doc__
-
+# ===================================================
+# Faces recognition example using eigenfaces and SVMs
+# ===================================================
+#
+# The dataset used in this example is a preprocessed excerpt of the
+# "Labeled Faces in the Wild", aka LFW_:
+#
+#   http://vis-www.cs.umass.edu/lfw/lfw-funneled.tgz (233MB)
+#
+#   .. _LFW: http://vis-www.cs.umass.edu/lfw/
+#
+#   original source: http://scikit-learn.org/stable/auto_examples/applications/face_recognition.html
 from time import time
 import logging
 import pylab as pl
 import numpy as np
 
-from sklearn.cross_validation import train_test_split
+from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.model_selection import train_test_split
 from sklearn.datasets import fetch_lfw_people
-from sklearn.grid_search import GridSearchCV
-from sklearn.metrics import classification_report
-from sklearn.metrics import confusion_matrix
-from sklearn.decomposition import RandomizedPCA
+from sklearn.decomposition import PCA
+from sklearn.model_selection import GridSearchCV
 from sklearn.svm import SVC
 
 # Display progress logs on stdout
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s')
-
 
 ###############################################################################
 # Download the data, if not already on disk and load it as numpy arrays
@@ -53,11 +43,10 @@ y = lfw_people.target
 target_names = lfw_people.target_names
 n_classes = target_names.shape[0]
 
-print "Total dataset size:"
-print "n_samples: %d" % n_samples
-print "n_features: %d" % n_features
-print "n_classes: %d" % n_classes
-
+print("Total dataset size:")
+print("n_samples: %d" % n_samples)
+print("n_features: %d" % n_features)
+print("n_classes: %d" % n_classes)
 
 ###############################################################################
 # Split into a training and testing set
@@ -66,49 +55,70 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random
 ###############################################################################
 # Compute a PCA (eigenfaces) on the face dataset (treated as unlabeled
 # dataset): unsupervised feature extraction / dimensionality reduction
-n_components = 150
+# increasing features too much --> reduces the accuracy due to overfit and high variance
+# decreasing features too much --> reduces the accuracy due to underfit and high bias
+n_components = 100
 
-print "Extracting the top %d eigenfaces from %d faces" % (n_components, X_train.shape[0])
+print("Extracting the top %d eigenfaces from %d faces" % (n_components, X_train.shape[0]))
 t0 = time()
-pca = RandomizedPCA(n_components=n_components, whiten=True).fit(X_train)
-print "done in %0.3fs" % (time() - t0)
+pca = PCA(n_components=n_components, whiten=True).fit(X_train)
+print("done in %0.3fs" % (time() - t0))
 
+"""
+principle components are arranged in descending order
+of the variance. 1st principle component has max variance
+and last principle component has least variance
+"""
+print("sum of principle components:", sum(pca.explained_variance_ratio_))  # always 1
+best_variance = filter(lambda condition: condition > 0.1, pca.explained_variance_ratio_)
+print("best variance of principal components:\n", best_variance)
 eigenfaces = pca.components_.reshape((n_components, h, w))
 
-print "Projecting the input data on the eigenfaces orthonormal basis"
+print("Projecting the input data on the eigenfaces orthonormal basis")
 t0 = time()
+# transforming features to principal components
+
+"""
+set X_train_pca to X_train (same for test) and see how long does it take.
+it will take very very long because then we will be running SVM on 1850 features
+which will make SVM extremely slow. also, accuracy goes up when using principle components.
+
+using PCA, we reduced 1850 features to ~150 principle components which results in very high performance
+in image recognition, PCA is very helpful. principle components are called Eigen Values in image recognition.
+
+we transform only the features -- not the labels or target
+"""
 X_train_pca = pca.transform(X_train)
 X_test_pca = pca.transform(X_test)
-print "done in %0.3fs" % (time() - t0)
-
+print("done in %0.3fs" % (time() - t0))
 
 ###############################################################################
 # Train a SVM classification model
 
-print "Fitting the classifier to the training set"
+print("Fitting the classifier to the training set")
 t0 = time()
-param_grid = {
-         'C': [1e3, 5e3, 1e4, 5e4, 1e5],
-          'gamma': [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.1],
-          }
-# for sklearn version 0.16 or prior, the class_weight parameter value is 'auto'
-clf = GridSearchCV(SVC(kernel='rbf', class_weight='balanced'), param_grid)
-clf = clf.fit(X_train_pca, y_train)
-print "done in %0.3fs" % (time() - t0)
-print "Best estimator found by grid search:"
-print clf.best_estimator_
 
+# using grid search to find the best params out of the dictionary below
+param_grid = {
+    'kernel': ['rbf'],
+    'C': [1e3, 5e3, 1e4, 5e4, 1e5],
+    'gamma': [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.1],
+}
+default_svc = SVC(class_weight='balanced')
+clf = GridSearchCV(default_svc, param_grid)
+clf = clf.fit(X_train_pca, y_train)  # principal components are used in place of input features
+print("done in %0.3fs" % (time() - t0))
+print("Best estimator found by grid search:")
+print(clf.best_estimator_)
 
 ###############################################################################
 # Quantitative evaluation of the model quality on the test set
-
-print "Predicting the people names on the testing set"
+print("Predicting the people names on the testing set")
 t0 = time()
 y_pred = clf.predict(X_test_pca)
-print "done in %0.3fs" % (time() - t0)
-
-print classification_report(y_test, y_pred, target_names=target_names)
-print confusion_matrix(y_test, y_pred, labels=range(n_classes))
+print("done in %0.3fs" % (time() - t0))
+print(classification_report(y_test, y_pred, target_names=target_names))
+print(confusion_matrix(y_test, y_pred, labels=range(n_classes)))
 
 
 ###############################################################################
@@ -133,12 +143,13 @@ def title(y_pred, y_test, target_names, i):
     true_name = target_names[y_test[i]].rsplit(' ', 1)[-1]
     return 'predicted: %s\ntrue:      %s' % (pred_name, true_name)
 
+
 prediction_titles = [title(y_pred, y_test, target_names, i)
-                         for i in range(y_pred.shape[0])]
+                     for i in range(y_pred.shape[0])]
 
 plot_gallery(X_test, prediction_titles, h, w)
 
-# plot the gallery of the most significative eigenfaces
+# plot the gallery of the most significant eigenfaces
 
 eigenface_titles = ["eigenface %d" % i for i in range(eigenfaces.shape[0])]
 plot_gallery(eigenfaces, eigenface_titles, h, w)

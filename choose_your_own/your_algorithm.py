@@ -64,10 +64,10 @@ for v in labels_predicted_random_forest:
     elif v == 1:
         slow_count_random_forest += 1
 
-print "adaboost accuracy:", accuracy_adaboost * 100, "%"
-print "random forest accuracy:", accuracy_random_forest * 100, "%"
-print "adaboost      --> fast:", fast_count_adaboost, "slow:", slow_count_adaboost
-print "random forest --> fast:", fast_count_random_forest, "slow:", slow_count_random_forest
+print ("adaboost accuracy:", accuracy_adaboost * 100, "%")
+print ("random forest accuracy:", accuracy_random_forest * 100, "%")
+print ("adaboost      --> fast:", fast_count_adaboost, "slow:", slow_count_adaboost)
+print ("random forest --> fast:", fast_count_random_forest, "slow:", slow_count_random_forest)
 
 try:
     prettyPicture(classifier_adaboost, features_test, labels_test)

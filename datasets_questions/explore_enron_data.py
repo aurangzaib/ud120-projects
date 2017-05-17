@@ -14,42 +14,43 @@
     enron_data["SKILLING JEFFREY K"]["bonus"] = 5600000
     
 """
-
+import sys
 import pickle
 import math
-from tools.feature_format import feature_format
+sys.path.append("tools/")
+from feature_format import feature_format
 
 # read strings from file and returns the original object hierarchy
 # we are reading enron + finance dataset
-enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "r"))
+enron_data = pickle.load(open("final_project/final_project_dataset.pkl", "rb"))
 
 # ../final_project/poi_names.txt --> contains poi of only enron folks
 # ../final_project/final_project_dataset.pkl --> contains data of enron + finance
 
-print "\n\nfeature: "
+print ("\n\nfeature: ")
 for feature in enron_data["SKILLING JEFFREY K"]:
-    print feature
-print "\n\n"
+    print (feature)
+print ("\n\n")
 
-print "persons:", len(enron_data)
-print "features/person:", len(enron_data["GRAMM WENDY L"])
+print ("persons:", len(enron_data))
+print ("features/person:", len(enron_data["GRAMM WENDY L"]))
 
 # total number of persons of interest
 number_of_poi = 0
 for person in enron_data:
     if enron_data[person]["poi"] is True:
         number_of_poi += 1
-print "POIs:", number_of_poi
-print "stocks   - James Prentice:", enron_data["PRENTICE JAMES"]["total_stock_value"]
-print "email    - Wesley Colwell --> POI:", enron_data["COLWELL WESLEY"]["from_this_person_to_poi"]
+print ("POIs:", number_of_poi)
+print ("stocks   - James Prentice:", enron_data["PRENTICE JAMES"]["total_stock_value"])
+print ("email    - Wesley Colwell --> POI:", enron_data["COLWELL WESLEY"]["from_this_person_to_poi"])
 
 # print "\n\ntotal payments: "
 # for person in enron_data: print person, ":", enron_data[person]["total_payments"]
 # print "\n\n"
 
-print "payments - skilling:", enron_data["SKILLING JEFFREY K"]["total_payments"]
-print "payments - kenneth:", enron_data["LAY KENNETH L"]["total_payments"]
-print "payments - fastow:", enron_data["FASTOW ANDREW S"]["total_payments"]
+print ("payments - skilling:", enron_data["SKILLING JEFFREY K"]["total_payments"])
+print ("payments - kenneth:", enron_data["LAY KENNETH L"]["total_payments"])
+print ("payments - fastow:", enron_data["FASTOW ANDREW S"]["total_payments"])
 
 # known salaries and email addresses
 known_salaries = 0
@@ -64,14 +65,14 @@ for person in enron_data:
     if math.isnan(float(enron_data[person]["total_payments"])):
         payments_nan += 1
         if enron_data[person]["poi"] is True:
-            print enron_data[person]
+            print (enron_data[person])
             poi_payments_nan += 1
 
-print "known salaries:", known_salaries
-print "known emails:", known_emails
-print "unknown payments:", float(payments_nan) / len(enron_data) * 100, "%"
+print ("known salaries:", known_salaries)
+print ("known emails:", known_emails)
+print ("unknown payments:", float(payments_nan) / len(enron_data) * 100, "%")
 poi_payments_nan = float(poi_payments_nan) / len(number_of_poi) * 100 if poi_payments_nan > 0 else poi_payments_nan
-print "unknown payments poi:", poi_payments_nan, "%"
+print ("unknown payments poi:", poi_payments_nan, "%")
 
 """
 if machine learning algorithm were to use with total payments as a feature,

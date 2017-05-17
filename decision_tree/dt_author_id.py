@@ -25,8 +25,8 @@ reduce_size = 1
 # reducing number of data points -- SVM is very slow for large data set
 # providing just 1% of the features
 # accuracy is 88.8% which is very good for 1% features (data set)
-features_train = features_train[:len(features_train) / reduce_size]
-labels_train = labels_train[:len(labels_train) / reduce_size]
+features_train = features_train[:int(len(features_train) / reduce_size)]
+labels_train = labels_train[:int(len(labels_train) / reduce_size)]
 
 """
 number of data points --> len(features_train) --> rows
@@ -37,18 +37,18 @@ classifier_decision_tree = DecisionTreeClassifier(min_samples_split=40,
                                                   # speed up the finding of best splits in fitting
                                                   # on large data set, it may slow down the training process
                                                   )
-print "number of features in data set:", len(features_train[0])
+print ("number of features in data set:", len(features_train[0]))
 # changing percentile --> SelectPercentile --> email_preprocess --> controls # of features
 
 # min_samples_split --> 2 has 90% accuracy
 # min_samples_split --> 30,40,45 has 91% accuracy
 train_time = time()
 classifier_decision_tree.fit(features_train, labels_train)
-print "dt training time:", round(time() - train_time, 3), "s"
+print ("dt training time:", round(time() - train_time, 3), "s")
 
 predict_time = time()
 labels_predicted = classifier_decision_tree.predict(features_test)
-print "dt prediction time:", round(time() - predict_time, 3), "s"
+print ("dt prediction time:", round(time() - predict_time, 3), "s")
 
 accuracy_tree = accuracy_score(labels_test, labels_predicted)
 
@@ -66,6 +66,6 @@ for v in labels_predicted:
     elif v == 0:
         sara_found += 1
 
-print "number of emails from chris:", chris_found
-print "number of emails from sara:", sara_found
-print "decision tree accuracy:", accuracy_tree
+print ("number of emails from chris:", chris_found)
+print ("number of emails from sara:", sara_found)
+print ("decision tree accuracy:", accuracy_tree)

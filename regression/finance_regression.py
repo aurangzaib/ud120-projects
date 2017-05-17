@@ -14,7 +14,7 @@
 
 import sys
 import pickle
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 import numpy as np
@@ -22,12 +22,12 @@ import numpy as np
 sys.path.append("tools/")
 from feature_format import feature_format, target_feature_split
 
-dictionary = pickle.load(open("../final_project/final_project_dataset_modified.pkl", "r"))
+dictionary = pickle.load(open("final_project/final_project_dataset_modified.pkl", "rb"))
 
 # list the features you want to look at -- first item in the list will be the "target" feature
 features_list = [
     "bonus",  # target
-    "salary"  # feature -- use salary, long_term_incentive and other features to compare score
+    "long_term_incentive"  # feature -- use salary, long_term_incentive and other features to compare score
 ]
 
 """
@@ -37,7 +37,6 @@ we find it by comparing r square scores while using both features as input and b
 
 data = feature_format(dictionary, features_list, remove_any_zeroes=True)
 target, features = target_feature_split(data)
-# training-testing split needed in regression, just like classification
 feature_train, feature_test, target_train, target_test = train_test_split(features,
                                                                           target,
                                                                           test_size=0.5,
@@ -55,16 +54,16 @@ target_prediction = reg.predict(feature_test)
 intercept_prediction = reg.intercept_
 slope_prediction = reg.coef_
 
-print "intercept:", intercept_prediction
-print "slope:", slope_prediction
+print ("intercept:", intercept_prediction)
+print ("slope:", slope_prediction)
 
 r_square_result = reg.score(feature_test, target_test) # input, output comparison for test
 r_square_train_result = reg.score(feature_train, target_train) # input, output comparison for train
 # gives the score -1.48 which is a very bad result
 # it shows linear regression is not able to find any relation
 # between input (salary) and target (bonus)
-print "r square result:", r_square_result
-print "r square result on train data:", r_square_train_result
+print ("r square result:", r_square_result)
+print ("r square result on train data:", r_square_train_result)
 
 for feature, target in zip(feature_test, target_test):
     plt.scatter(feature, target, color=test_color)
@@ -80,8 +79,8 @@ try:
     # using test data -- without outliers for fitting
     # observe the change in slope
     reg.fit(feature_test, target_test)
-    print "intercept without outliers:", reg.intercept_
-    print "slope without outliers:", reg.coef_
+    print ("intercept without outliers:", reg.intercept_)
+    print ("slope without outliers:", reg.coef_)
     plt.plot(feature_train, reg.predict(feature_train), color="b")
 except NameError:
     pass

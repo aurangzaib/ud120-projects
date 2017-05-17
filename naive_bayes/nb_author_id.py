@@ -52,10 +52,11 @@ reduce_size = 100
 # reducing number of data points -- SVM is very slow for large data set
 # providing just 1% of the features
 # accuracy is 88.8% which is very good for 1% features (data set)
-features_train = features_train[:len(features_train) / reduce_size]
-labels_train = labels_train[:len(labels_train) / reduce_size]
-print "number of features in data set:", len(features_train[0])
-# changing percentile --> SelectPercentile --> email_preprocess --> controls # of features
+features_train = features_train[:int(len(features_train) / reduce_size)]
+labels_train = labels_train[:int(len(labels_train) / reduce_size)]
+print ("number of features in data set:", len(features_train[0]))
+# changing percentile --> SelectPercentile --> email_preprocess -->
+# controls # of features
 
 # create gaussian naive bayes classifier
 classifier_nb = GaussianNB()
@@ -63,11 +64,11 @@ classifier_nb = GaussianNB()
 time_bayes = time()
 # train classifier by fitting training data
 classifier_nb.fit(features_train, labels_train)
-print "bayes training time:", round(time() - time_bayes, 3), "s"
+print ("bayes training time:", round(time() - time_bayes, 3), "s")
 time_predict_bayes = time()
 # predict the labels by providing test features
 labels_predicted = classifier_nb.predict(features_test)
-print "bayes prediction time:", round(time() - time_predict_bayes, 3), "s"
+print ("bayes prediction time:", round(time() - time_predict_bayes, 3), "s")
 
 # find the accuracy of the predicted labels against the test labels
 # never check the accuracy against labels_train
@@ -86,6 +87,6 @@ for v in labels_predicted:
     elif v == 0:
         sara_found += 1
 
-print "number of emails from chris:", chris_found
-print "number of emails from sara:", sara_found
-print "naive bayes accuracy:", accuracy
+print ("number of emails from chris:", chris_found)
+print ("number of emails from sara:", sara_found)
+print ("naive bayes accuracy:", accuracy)

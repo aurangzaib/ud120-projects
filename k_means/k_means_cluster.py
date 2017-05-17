@@ -3,7 +3,7 @@ import pickle
 import matplotlib.pyplot as plt
 import sys
 sys.path.append("tools/")
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.cluster import KMeans
 from feature_format import feature_format, target_feature_split
@@ -33,7 +33,7 @@ def Draw(prediction, features, poi, mark_poi=False, name="image.png", f1_name="f
 
 # load in the dict of dicts containing all the data on each person in the
 # dataset
-data_dict = pickle.load(open("final_project/final_project_dataset.pkl", "r"))
+data_dict = pickle.load(open("final_project/final_project_dataset.pkl", "rb"))
 data_dict.pop("TOTAL", 0)  # outlier removed
 # the input features we want to use
 # can be any key in the person-level dictionary (salary, director_fees, etc.)
@@ -75,10 +75,10 @@ for f1, f2 in finance_features:
     plt.scatter(f1, f2)
 plt.show()
 
-print "exercise stock - max:", max(exercised_stock_options_values)
-print "exercise stock - min:", min(exercised_stock_options_values)
-print "salary - max:", max(salary_values)
-print "salary - min:", min(salary_values)
+print ("exercise stock - max:", max(exercised_stock_options_values))
+print ("exercise stock - min:", min(exercised_stock_options_values))
+print ("salary - max:", max(salary_values))
+print ("salary - min:", min(salary_values))
 """
 I don't know should I divide data into train and test or not.
 they used the same data for train and test
@@ -96,8 +96,8 @@ kmeans_cluster.fit(finance_features)
 prediction = kmeans_cluster.predict(finance_features)
 # cluster centers
 # gives feature values of the centroids
-print "total clusters:", len(kmeans_cluster.cluster_centers_)
-print "cluster centers:\n", kmeans_cluster.cluster_centers_
+print ("total clusters:", len(kmeans_cluster.cluster_centers_))
+print ("cluster centers:\n", kmeans_cluster.cluster_centers_)
 """
 compare plot 1 with plot 2
 plot 1 --> data without clustering
@@ -113,4 +113,4 @@ try:
          f1_name=feature_1,
          f2_name=feature_2)
 except NameError:
-    print "no predictions object named prediction found, no clusters to plot"
+    print ("no predictions object named prediction found, no clusters to plot")

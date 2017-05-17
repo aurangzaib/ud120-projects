@@ -1,33 +1,64 @@
-from sklearn.metrics import accuracy_score
-import matplotlib.pyplot as plt
-
 """
-|__ Classification      --> Discrete Decision Boundaries, Predicts the class of features
+|__ Classification        --> Discrete Decision Boundaries, Predicts the class of features
                             |__ Naive Bayes
                             |__ Support Vector Machine
                             |__ Decision Tree
                             |__ Adaptive Boost --> ensemble Decision Trees
                             |__ Random Forest  --> ensember Decision Trees
-|__ Regression          --> Continuous Output, Slope, Intercept, Predicts value of the features
-|__ Cluster             --> Unsupervised Learning
+|__ Regression            --> Continuous Output, Slope, Intercept, Predicts value of the features
+|__ Cluster               --> Unsupervised Learning
                             |__ KMeans
                             |__ Input --> List of Features
                             |__ Output--> Predicted Clusters and Cluster Centers (Centroids)
-|__ Feature Scale       --> MinMaxScaler --> 0...1
-|__ Vectorizer          --> Vector of words' frequency from Text --> Bag Of Features --> Feature = Word
+|__ Feature Scale         --> MinMaxScaler --> 0...1
+|__ Vectorizer            --> Vector of words' frequency from Text --> Bag Of Features --> Feature = Word
                             |__ List of Features
                             |__ Dictionary of Features
                             |__ List of Frequency of Features --> Frequency Vector
                             |__ CountVectorizer
                             |__ TfidfVectorizer --> term frequency inverse document frequency
-|__ Text Classification --> Stopwords, Stemmer, Vectorizer
+|__ Text Classification   --> Stopwords, Stemmer, Vectorizer
+|__ Feature Reduction     --> Reduce number of features and dimensions using PCA
+                            |__ Principal Component Analysis
+                            |__ Finding Principal Components
+                            |__ Finding Variances 
+                            |__ Using Principal Components in place of Features
+                            |__ Compare Features & Principal Components usage in Image Recognition
+|__ K Fold                  |__ Train/Test Features Split
 """
+from __future__ import print_function
+import sys
+import pickle
+
+sys.path.append("tools/")
+from sklearn.model_selection import train_test_split
+from feature_format import feature_format, target_feature_split
+
+dictionary = pickle.load(open("final_project/final_project_dataset_modified.pkl", mode="rb"))
+
+# list the features you want to look at
+# first item in the list will be the target feature
+features_list = [
+    # target
+    "bonus",
+    # features
+    "long_term_incentive",
+    "salary",
+    "expenses"
+]
+
+raw_data = feature_format(dictionary, features_list, remove_any_zeroes=True)
+target, features = target_feature_split(raw_data)
+feature_train, feature_test, target_train, target_test = train_test_split(features,
+                                                                          target,
+                                                                          test_size=0.3,
+                                                                          random_state=42)
 
 
 class MachineLearningAlgorithms(object):
-
     def classify_nb(self, features_train, labels_train, features_test, labels_test):
         from sklearn.naive_bayes import GaussianNB  # --> gaussian naive bayes
+        from sklearn.metrics import accuracy_score
         classifier = GaussianNB()
         classifier.fit(features_train, labels_train)
         labels_predicted = classifier.predict(features_test)
@@ -38,8 +69,10 @@ class MachineLearningAlgorithms(object):
 
     def classify_svm(self, features_train, labels_train, features_test, labels_test):
         from sklearn.svm import SVC  # --> support vector classifier
-        features_train_less = features_train[:len(features_train) / 10]
-        labels_train_less = labels_train[:len(labels_train) / 10]
+        from sklearn.metrics import accuracy_score
+        from sklearn.metrics import f1_score
+        features_train_less = features_train[:int(len(features_train) / 10)]
+        labels_train_less = labels_train[:int(len(labels_train) / 10)]
         classifier = SVC(kernel='rbf',
                          gamma=10.,  # sensitive to margins of near features
                          C=1000)  # more accurate less smooth
@@ -53,12 +86,13 @@ class MachineLearningAlgorithms(object):
         accuracy = accuracy_score(labels_test, labels_predicted)
         accuracy_less = accuracy_score(labels_test, labels_predicted_less)
         print("accuracy:", accuracy * 100, "%", "--> support vector machine")
-        print("accuracy:", accuracy_less * 100, "%",
-              "--> support vector machine with 10% data")
+        print("accuracy:", accuracy_less * 100, "%", "--> support vector machine with 10% data")
+        # print("F1 score:", f1_score(labels_test, labels_predicted))
         return classifier
 
     def classify_dt(self, features_train, labels_train, features_test, labels_test):
         from sklearn.tree import DecisionTreeClassifier
+        from sklearn.metrics import accuracy_score
         # stop further split when node has only 40 samples remaining
         classifier = DecisionTreeClassifier(min_samples_split=40)
         classifier.fit(features_train, labels_train)
@@ -69,6 +103,7 @@ class MachineLearningAlgorithms(object):
 
     def classify_adaboost(self, features_train, labels_train, features_test, labels_test):
         from sklearn.ensemble import AdaBoostClassifier
+        from sklearn.metrics import accuracy_score
         # using 100 weak estimators --> ensemble
         classifier = AdaBoostClassifier(n_estimators=100)
         classifier.fit(features_train, labels_train)
@@ -79,7 +114,7 @@ class MachineLearningAlgorithms(object):
 
     def classify_random_forest(self, features_train, labels_train, features_test, labels_test):
         from sklearn.ensemble import RandomForestClassifier
-        from sklearn.ensemble import AdaBoostClassifier
+        from sklearn.metrics import accuracy_score
         classifier = RandomForestClassifier(
             n_estimators=10, min_samples_split=40)
         classifier.fit(features_train, labels_train)
@@ -88,8 +123,20 @@ class MachineLearningAlgorithms(object):
         print("accuracy:", accuracy * 100, "%", "--> random forest")
         return classifier
 
-    def perform_linear_regression(self, ):
-        from sklearn.linear_model import LinearRegression
+    def perform_linear_regression(self):
+        """
+        classifiers --> predict the class OF the features.
+        regressions --> predict the target values FROM the features.
+        
+        classifiers --> output is discrete
+        regressions --> output is continuous
+                    --> also gives slope and intercept i.e. relation b/w feature and target
+        
+        classifiers --> evaluation using accuracy score
+        regressions --> evaluation using sse, r-square, gradient-descent
+        """
+        from sklearn.linear_model import LinearRegression, Lasso
+        import matplotlib.pyplot as plt
         import numpy as np
         import random
         """
@@ -111,29 +158,21 @@ class MachineLearningAlgorithms(object):
                 [float(random.uniform(5, 8) * age_train[i][0])])
 
         regression_model = LinearRegression()
+        lasso_model = Lasso(alpha=0.1)  # alpha=0 --> use linear regression
         regression_model.fit(age_train, networth_train)
-        """
-        classifiers --> predict the class OF the features.
-        regressions --> predict the target values FROM the features.
-        
-        classifiers --> output is discrete
-        regressions --> output is continuous
-                    --> also gives slope and intercept i.e. relation b/w feature and target
-        
-        classifiers --> evaluation using accuracy score
-        regressions --> evaluation using sse, r-square, gradient-descent
-        """
+        lasso_model.fit(age_train, networth_train)
         networth_predicted = regression_model.predict(age_test)
-
-        print("predicted networth for age 34:",
-              regression_model.predict([[34]]))
+        networth_predicted_lasso = lasso_model.predict(age_test)
+        print("predicted networth for age 34:", regression_model.predict([[34]]))
+        print("predicted networth for age 34:", lasso_model.predict([[34]]))
         print("slope:", regression_model.coef_)
         print("intercept:", regression_model.intercept_)
-
+        print("lasso slope:", lasso_model.coef_)
+        print("lasso intercept:", lasso_model.intercept_)
         # low score --> over fitting
         # input, output
-        print("r square error   : ", regression_model.score(
-            age_test, networth_test))
+        print("r square error   : ", regression_model.score(age_test, networth_test))
+        print("lasso r square error   : ", lasso_model.score(age_test, networth_test))
         # mean(square(prediction - actual))
         print("mean square error: ", np.mean(
             (networth_predicted - networth_test) ** 2))
@@ -194,10 +233,10 @@ class MachineLearningAlgorithms(object):
 
         scaler = MinMaxScaler()
         # doesn't accept list, requires np array or matrix
-        print (scaler.fit_transform(arr_2))
+        print(scaler.fit_transform(arr_2))
         return rescaled
 
-    def count_vectorizer(self, ):
+    def count_vectorizer(self):
         from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
         train_corpus = ["hello earth, from mars",
                         "she likes to eat", "lets get some food"]
@@ -235,7 +274,7 @@ class MachineLearningAlgorithms(object):
         """
         tf-idf term weighting
             tf --> term frequency, idf --> inverse document frequency
-            the, a, um, uh, is --> usually not of interest <-- they shadow the frequency of rare but interesting words.
+            a, um, uh, is --> not of interest <-- they shadow the frequency of rare but interesting words.
             tf-idf --> re-weight the features in float suitable for classifier.
             it uses euclidean norms
             V-norm = V / ||V||2 = V / root(V1^2 + v2^2 + ...)
@@ -244,7 +283,7 @@ class MachineLearningAlgorithms(object):
         # compare with vector_count
         print("tf-idf count:", vectorizer.fit_transform(train_corpus).toarray())
 
-    def stop_words(self, ):
+    def stop_words(self):
         """
             stopwords --> words which have high frequency and low importance
             nltk --> natural language toolkit
@@ -269,11 +308,12 @@ class MachineLearningAlgorithms(object):
             features = filter(lambda condition: condition != s, features)
         print("after:", len(features))
 
-    def stemmering(self, ):
+    def stemmering(self):
         """
         stemmer --> get the unique word from collection of words
         """
-        from nltk.stem.porter import PorterStemmer  # from nltk.stem.snowball import SnowballStemmer
+        # from nltk.stem.snowball import SnowballStemmer --> can also be used
+        from nltk.stem.porter import PorterStemmer
         plurals = ['die', 'died', 'dying', 'dies', 'died',
                    'responsive', 'responsivity', 'unresponsive']
         stemmer = PorterStemmer()
@@ -281,30 +321,26 @@ class MachineLearningAlgorithms(object):
         print("plural:", plurals)
         print("singles:", singles)
 
-    def text_classification(self, ):
+    def text_classification(self):
         from sklearn.feature_extraction.text import CountVectorizer
         from nltk.corpus import stopwords
         from nltk.stem.porter import PorterStemmer
         sw = stopwords.words("english")
         corpus = 'This is a normal looking text. it contains a lot of insignificant texts. ' \
-            'Ok remove that text. also, ' \
-            'apply the stemming so that we can remove repeat repetition ' \
-            'repetitive health healthy healthiness sick sickness '' \
+                 'Ok remove that text. also, ' \
+                 'apply the stemming so that we can remove repeat repetition ' \
+                 'repetitive health healthy healthiness sick sickness '' \
                 ''die dying dies died ' \
-            'done do does go went gone going see sees seeing'
-
+                 'done do does go went gone going see sees seeing'
         # string --> list
         corpus_list = corpus.split()
-
         # removing stopwords
         for s in sw:
             corpus_list = filter(lambda condition: condition != s, corpus_list)
-
         # stemmering
         stemmer = PorterStemmer()
         corpus_list = [stemmer.stem(_corpus_) for _corpus_ in corpus_list]
         corpus = [' '.join(corpus_list)]
-
         # vector counts
         vectorizer = CountVectorizer(min_df=1, ngram_range=(0, 1))
         vectorizer.fit(corpus)
@@ -313,6 +349,66 @@ class MachineLearningAlgorithms(object):
         for _index_ in range(len(feature_list)):
             print(feature_list[_index_], ":", vector_count[0][_index_])
 
-_algorithms_ = MachineLearningAlgorithms()
-_algorithms_.perform_linear_regression()
-_algorithms_.count_vectorizer()
+    def principal_component_analysis(self, train=feature_train, test=feature_test):
+        from sklearn.decomposition import PCA
+        # how many components
+        pca = PCA(n_components=2)
+        # fit the pca
+        pca.fit(train)
+        # get principle components and variances
+        pc_variance = pca.explained_variance_ratio_
+        pc_values = pca.components_
+        print("Variance:", pc_variance)
+        print("Principal Components: ", pc_values)
+        return pca.transform(train), pca.transform(test)
+
+    def perform_k_fold_and_grid_search(self, data):
+        from sklearn.svm import SVC
+        from sklearn.metrics import accuracy_score
+        from sklearn.model_selection import StratifiedKFold
+        from sklearn.decomposition import PCA
+        from sklearn.model_selection import GridSearchCV
+        # split feature and target data
+        labels_data, features_data = target_feature_split(data)
+        features_train, labels_train, features_test, labels_test = [], [], [], []
+
+        # split features and labels into train and test
+        skf = StratifiedKFold(n_splits=3)
+        for train_index, test_index in skf.split(features_data, labels_data):
+            features_train = [features_data[index] for index in train_index]
+            labels_train = [labels_data[index] for index in train_index]
+            features_test = [features_data[index] for index in test_index]
+            labels_test = [labels_data[index] for index in test_index]
+
+        # perform principal components analysis and transform features into components
+        pca = PCA(n_components=2)
+        pca.fit(features_train)
+        pca_train, pca_test = pca.transform(features_train), pca.transform(features_test)
+
+        # dictionary of params for svm
+        parameters = {
+            'kernel': ('linear', 'rbf'),
+            'C': [1, 10, 1000],
+            'gamma': [10, 1000]
+        }
+        _svm_ = SVC()
+        # grid search will find the best params
+        svm_classifier = GridSearchCV(_svm_, parameters)
+
+        # svm classifier for classification
+        # principal components are used in place of features
+        svm_classifier.fit(features_train, labels_train)
+        print("best params:", svm_classifier.best_params_)
+        labels_prediction = svm_classifier.predict(features_test)
+        print("accuracy score: ", accuracy_score(labels_test, labels_prediction) * 100, "%")
+
+
+ml = MachineLearningAlgorithms()
+# SVM with features
+ml.classify_svm(feature_train, target_train, feature_test, target_test)
+pca_train_, pca_test_ = ml.principal_component_analysis(feature_train, feature_test)
+# SVM with principle components
+ml.classify_svm(pca_train_, target_train, pca_test_, target_test)
+
+# k fold train/test splitting
+ml.perform_k_fold_and_grid_search(raw_data)
