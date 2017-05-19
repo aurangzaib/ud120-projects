@@ -3,7 +3,8 @@ import os
 import pickle
 import sys
 from sklearn.feature_extraction.text import TfidfVectorizer
-sys.path.append("tools/")
+
+sys.path.append("../tools/")
 from parse_out_email_text import parseOutText
 
 """
@@ -19,8 +20,8 @@ from parse_out_email_text import parseOutText
 
     The data is stored in lists and packed away in pickle files at the end.
 """
-from_sara = open("text_learning/from_sara.txt", "rb") # rb --> read as bytes
-from_chris = open("text_learning/from_chris.txt", "rb")
+from_sara = open("../text_learning/from_sara.txt", "rb")  # rb --> read as bytes
+from_chris = open("../text_learning/from_chris.txt", "rb")
 
 from_data = []
 word_data = []
@@ -30,7 +31,7 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
     for path in from_person:
         path = os.path.join('..', path[:-1])
         # paths of the emails   
-        email = open(path, "r")
+        email = open(path, "rb")
         # texts of the email
         # remove punctuation and apply stemming
         email_text = parseOutText(email)
@@ -50,10 +51,9 @@ vectorizer = TfidfVectorizer(min_df=1, stop_words="english")
 vector_count = vectorizer.fit_transform(word_data).toarray()
 # get the list of features names
 features_list = vectorizer.get_feature_names()
-
 # close the files
 from_sara.close()
 from_chris.close()
 # write the results in directory --> text_learning
-pickle.dump(word_data, open("text_learning/your_word_data.pkl", "wb")) # w --> write
-pickle.dump(from_data, open("text_learning/your_email_authors.pkl", "wb"))
+pickle.dump(word_data, open("../text_learning/your_word_data.pkl", "wb"))  # w --> write
+pickle.dump(from_data, open("../text_learning/your_email_authors.pkl", "wb"))

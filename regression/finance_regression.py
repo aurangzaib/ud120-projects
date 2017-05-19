@@ -17,12 +17,11 @@ import pickle
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
-import numpy as np
 
-sys.path.append("tools/")
+sys.path.append("../tools/")
 from feature_format import feature_format, target_feature_split
 
-dictionary = pickle.load(open("final_project/final_project_dataset_modified.pkl", "rb"))
+dictionary = pickle.load(open("../final_project/final_project_dataset_modified.pkl", "rb"))
 
 # list the features you want to look at -- first item in the list will be the "target" feature
 features_list = [

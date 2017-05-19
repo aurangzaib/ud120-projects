@@ -17,12 +17,12 @@
 import sys
 import pickle
 import math
-sys.path.append("tools/")
+sys.path.append("../tools/")
 from feature_format import feature_format
 
 # read strings from file and returns the original object hierarchy
 # we are reading enron + finance dataset
-enron_data = pickle.load(open("final_project/final_project_dataset.pkl", "rb"))
+enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "rb"))
 
 # ../final_project/poi_names.txt --> contains poi of only enron folks
 # ../final_project/final_project_dataset.pkl --> contains data of enron + finance

@@ -3,13 +3,13 @@ from __future__ import print_function
 import pickle
 import sys
 
-sys.path.append("tools/")
+sys.path.append("../tools/")
 from feature_format import feature_format, target_feature_split
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 
-data_dict = pickle.load(open("final_project/final_project_dataset.pkl", "rb"))
+data_dict = pickle.load(open("../final_project/final_project_dataset.pkl", "rb"))
 
 # first element is our labels, any added elements are predictor
 # features. Keep this the same for the mini-project, but you'll
@@ -28,5 +28,4 @@ classifier = DecisionTreeClassifier(min_samples_split=2)
 classifier.fit(features_train, labels_train)
 predicted_labels = classifier.predict(features_test)
 accuracy = accuracy_score(labels_test, predicted_labels)
-print ("accuracy:", accuracy)
-# it's all yours from here forward!
+print("accuracy:", accuracy)
