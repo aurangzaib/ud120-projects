@@ -1,0 +1,464 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AdaBoostClassifier	../choose_your_own/your_algorithm.py	/^from sklearn.ensemble import AdaBoostClassifier$/;"	kind:namespace	line:6
+AdaBoostClassifier	../simple_classifier/classifiers.py	/^        from sklearn.ensemble import AdaBoostClassifier$/;"	kind:namespace	line:105
+C	../svm/svm_author_id.py	/^                     C=10000)  # try 1, 10, 1000, 10000$/;"	kind:variable	line:63
+CLF_PICKLE_FILENAME	../final_project/tester.py	/^CLF_PICKLE_FILENAME = "my_classifier.pkl"$/;"	kind:variable	line:77
+CountVectorizer	../simple_classifier/classifiers.py	/^        from sklearn.feature_extraction.text import CountVectorizer$/;"	kind:namespace	line:293
+CountVectorizer	../simple_classifier/classifiers.py	/^        from sklearn.feature_extraction.text import CountVectorizer$/;"	kind:namespace	line:325
+CountVectorizer	../simple_classifier/classifiers.py	/^        from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer$/;"	kind:namespace	line:240
+DATASET_PICKLE_FILENAME	../final_project/tester.py	/^DATASET_PICKLE_FILENAME = "my_dataset.pkl"$/;"	kind:variable	line:78
+DecisionTreeClassifier	../decision_tree/dt_author_id.py	/^from sklearn.tree import DecisionTreeClassifier$/;"	kind:namespace	line:13
+DecisionTreeClassifier	../feature_selection/find_signature.py	/^from sklearn.tree import DecisionTreeClassifier$/;"	kind:namespace	line:7
+DecisionTreeClassifier	../simple_classifier/classifiers.py	/^        from sklearn.tree import DecisionTreeClassifier$/;"	kind:namespace	line:94
+DecisionTreeClassifier	../validation/validate_poi.py	/^from sklearn.tree import DecisionTreeClassifier$/;"	kind:namespace	line:9
+Draw	../k_means/k_means_cluster.py	/^def Draw(prediction, features, poi, mark_poi=False, name="image.png", f1_name="feature 1", f2_name="feature 2"):$/;"	kind:function	line:12
+FEATURE_LIST_FILENAME	../final_project/tester.py	/^FEATURE_LIST_FILENAME = "my_feature_list.pkl"$/;"	kind:variable	line:79
+GaussianNB	../final_project/poi_id.py	/^from sklearn.naive_bayes import GaussianNB$/;"	kind:namespace	line:35
+GaussianNB	../naive_bayes/nb_author_id.py	/^from sklearn.naive_bayes import GaussianNB$/;"	kind:namespace	line:15
+GaussianNB	../simple_classifier/classifiers.py	/^        from sklearn.naive_bayes import GaussianNB  # --> gaussian naive bayes$/;"	kind:namespace	line:60
+GaussianNB	../simple_classifier/classify.py	/^    from sklearn.naive_bayes import GaussianNB$/;"	kind:namespace	line:19
+GridSearchCV	../pca/eigenfaces.py	/^from sklearn.model_selection import GridSearchCV$/;"	kind:namespace	line:22
+GridSearchCV	../simple_classifier/classifiers.py	/^        from sklearn.model_selection import GridSearchCV$/;"	kind:namespace	line:370
+KMeans	../k_means/k_means_cluster.py	/^from sklearn.cluster import KMeans$/;"	kind:namespace	line:8
+KMeans	../simple_classifier/classifiers.py	/^        from sklearn.cluster import KMeans$/;"	kind:namespace	line:201
+Lasso	../simple_classifier/classifiers.py	/^        from sklearn.linear_model import LinearRegression, Lasso$/;"	kind:namespace	line:138
+LinearRegression	../outliers/outlier_removal_regression.py	/^from sklearn.linear_model import LinearRegression$/;"	kind:namespace	line:7
+LinearRegression	../regression/finance_regression.py	/^from sklearn.linear_model import LinearRegression$/;"	kind:namespace	line:19
+LinearRegression	../simple_classifier/classifiers.py	/^        from sklearn.linear_model import LinearRegression, Lasso$/;"	kind:namespace	line:138
+MachineLearningAlgorithms	../simple_classifier/classifiers.py	/^class MachineLearningAlgorithms(object):$/;"	kind:class	line:58
+MinMaxScaler	../k_means/k_means_cluster.py	/^from sklearn.preprocessing import MinMaxScaler$/;"	kind:namespace	line:7
+MinMaxScaler	../simple_classifier/classifiers.py	/^        from sklearn.preprocessing import MinMaxScaler$/;"	kind:namespace	line:216
+NBAccuracy	../simple_classifier/classify.py	/^def NBAccuracy(features_train, labels_train, features_test, labels_test):$/;"	kind:function	line:1
+PCA	../pca/eigenfaces.py	/^from sklearn.decomposition import PCA$/;"	kind:namespace	line:21
+PCA	../simple_classifier/classifiers.py	/^        from sklearn.decomposition import PCA$/;"	kind:namespace	line:353
+PCA	../simple_classifier/classifiers.py	/^        from sklearn.decomposition import PCA$/;"	kind:namespace	line:369
+PERF_FORMAT_STRING	../final_project/tester.py	/^Recall: {:>0.{display_precision}f}\\tF1: {:>0.{display_precision}f}\\tF2: {:>0.{display_precision}f}"$/;"	kind:variable	line:21
+PorterStemmer	../simple_classifier/classifiers.py	/^        from nltk.stem.porter import PorterStemmer$/;"	kind:namespace	line:316
+PorterStemmer	../simple_classifier/classifiers.py	/^        from nltk.stem.porter import PorterStemmer$/;"	kind:namespace	line:327
+RESULTS_FORMAT_STRING	../final_project/tester.py	/^\\tFalse negatives: {:4d}\\tTrue negatives: {:4d}"$/;"	kind:variable	line:23
+RandomForestClassifier	../choose_your_own/your_algorithm.py	/^from sklearn.ensemble import RandomForestClassifier$/;"	kind:namespace	line:7
+RandomForestClassifier	../simple_classifier/classifiers.py	/^        from sklearn.ensemble import RandomForestClassifier$/;"	kind:namespace	line:116
+SVC	../pca/eigenfaces.py	/^from sklearn.svm import SVC$/;"	kind:namespace	line:23
+SVC	../simple_classifier/classifiers.py	/^        from sklearn.svm import SVC  # --> support vector classifier$/;"	kind:namespace	line:71
+SVC	../simple_classifier/classifiers.py	/^        from sklearn.svm import SVC$/;"	kind:namespace	line:366
+SVC	../svm/svm_author_id.py	/^from sklearn.svm import SVC$/;"	kind:namespace	line:12
+SelectPercentile	../tools/email_preprocess.py	/^from sklearn.feature_selection import SelectPercentile, f_classif$/;"	kind:namespace	line:9
+SnowballStemmer	../tools/parse_out_email_text.py	/^from nltk.stem.snowball import SnowballStemmer$/;"	kind:namespace	line:3
+StratifiedKFold	../simple_classifier/classifiers.py	/^        from sklearn.model_selection import StratifiedKFold$/;"	kind:namespace	line:368
+StratifiedShuffleSplit	../final_project/tester.py	/^from sklearn.cross_validation import StratifiedShuffleSplit$/;"	kind:namespace	line:15
+TfidfVectorizer	../feature_selection/find_signature.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	kind:namespace	line:6
+TfidfVectorizer	../simple_classifier/classifiers.py	/^        from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer$/;"	kind:namespace	line:240
+TfidfVectorizer	../text_learning/vectorize_text.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	kind:namespace	line:5
+TfidfVectorizer	../tools/email_preprocess.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	kind:namespace	line:8
+X	../pca/eigenfaces.py	/^X = lfw_people.data$/;"	kind:variable	line:38
+X_test_pca	../pca/eigenfaces.py	/^X_test_pca = pca.transform(X_test)$/;"	kind:variable	line:92
+X_train_pca	../pca/eigenfaces.py	/^X_train_pca = pca.transform(X_train)$/;"	kind:variable	line:91
+__init__.py	../feature_selection/__init__.py	1;"	kind:file	line:1
+__init__.py	../text_learning/__init__.py	1;"	kind:file	line:1
+__init__.py	../tools/__init__.py	1;"	kind:file	line:1
+_accuracy_	../feature_selection/find_signature.py	/^_accuracy_ = accuracy_score(labels_test, labels_predicted)$/;"	kind:variable	line:45
+_adaboost	../simple_classifier/main.py	/^_adaboost = classify_adaboost(features_train, labels_train, features_test, labels_test)$/;"	kind:variable	line:32
+_dt	../simple_classifier/main.py	/^_dt = classify_dt(features_train, labels_train, features_test, labels_test)$/;"	kind:variable	line:30
+_imp_	../feature_selection/find_signature.py	/^_imp_ = dt_classifier.feature_importances_$/;"	kind:variable	line:46
+_nb	../simple_classifier/main.py	/^_nb = classify_nb(features_train, labels_train, features_test, labels_test)$/;"	kind:variable	line:29
+_random_forest	../simple_classifier/main.py	/^_random_forest = classify_random_forest(features_train, labels_train, features_test, labels_test)$/;"	kind:variable	line:33
+_signature_index_	../feature_selection/find_signature.py	/^_signature_index_ = (_imp_ >= max(_imp_)).nonzero()[0][0]  # its numpy array and .index() doesn't work$/;"	kind:variable	line:47
+_signature_word_	../feature_selection/find_signature.py	/^_signature_word_ = vectorizer.get_feature_names()[_signature_index_]$/;"	kind:variable	line:48
+_svm	../simple_classifier/main.py	/^_svm = classify_svm(features_train, labels_train, features_test, labels_test)$/;"	kind:variable	line:31
+aa	../datasets_questions/explore_enron_data.py	/^aa = feature_format(enron_data, ["salary", "total_payments"])$/;"	kind:variable	line:82
+accuracy	../naive_bayes/nb_author_id.py	/^accuracy = accuracy_score(labels_test, labels_predicted)$/;"	kind:variable	line:75
+accuracy	../validation/validate_poi.py	/^accuracy = accuracy_score(labels_test, predicted_labels)$/;"	kind:variable	line:30
+accuracy_adaboost	../choose_your_own/your_algorithm.py	/^accuracy_adaboost = accuracy_score(labels_test, labels_predicted)$/;"	kind:variable	line:47
+accuracy_random_forest	../choose_your_own/your_algorithm.py	/^accuracy_random_forest = accuracy_score(labels_test, labels_predicted_random_forest)$/;"	kind:variable	line:48
+accuracy_score	../choose_your_own/your_algorithm.py	/^from sklearn.metrics import accuracy_score$/;"	kind:namespace	line:8
+accuracy_score	../decision_tree/dt_author_id.py	/^from sklearn.metrics import accuracy_score$/;"	kind:namespace	line:15
+accuracy_score	../feature_selection/find_signature.py	/^from sklearn.metrics import accuracy_score$/;"	kind:namespace	line:8
+accuracy_score	../naive_bayes/nb_author_id.py	/^from sklearn.metrics import accuracy_score$/;"	kind:namespace	line:16
+accuracy_score	../simple_classifier/classifiers.py	/^        from sklearn.metrics import accuracy_score$/;"	kind:namespace	line:106
+accuracy_score	../simple_classifier/classifiers.py	/^        from sklearn.metrics import accuracy_score$/;"	kind:namespace	line:117
+accuracy_score	../simple_classifier/classifiers.py	/^        from sklearn.metrics import accuracy_score$/;"	kind:namespace	line:367
+accuracy_score	../simple_classifier/classifiers.py	/^        from sklearn.metrics import accuracy_score$/;"	kind:namespace	line:61
+accuracy_score	../simple_classifier/classifiers.py	/^        from sklearn.metrics import accuracy_score$/;"	kind:namespace	line:72
+accuracy_score	../simple_classifier/classifiers.py	/^        from sklearn.metrics import accuracy_score$/;"	kind:namespace	line:95
+accuracy_score	../simple_classifier/classify.py	/^    from sklearn.metrics import accuracy_score$/;"	kind:namespace	line:20
+accuracy_score	../svm/svm_author_id.py	/^from sklearn.metrics import accuracy_score$/;"	kind:namespace	line:13
+accuracy_score	../validation/validate_poi.py	/^from sklearn.metrics import accuracy_score$/;"	kind:namespace	line:10
+accuracy_svm	../svm/svm_author_id.py	/^accuracy_svm = accuracy_score(labels_test, labels_predicted)$/;"	kind:variable	line:75
+accuracy_tree	../decision_tree/dt_author_id.py	/^accuracy_tree = accuracy_score(labels_test, labels_predicted)$/;"	kind:variable	line:53
+ages	../outliers/outlier_removal_regression.py	/^    ages = numpy.reshape(numpy.array(ages), (len(ages), 1))$/;"	kind:variable	line:53
+ages	../outliers/outlier_removal_regression.py	/^ages = numpy.reshape(numpy.array(ages), (len(ages), 1))$/;"	kind:variable	line:18
+ages	../outliers/outlier_removal_regression.py	/^ages = pickle.load(open("practice_outliers_ages.pkl", "r"))$/;"	kind:variable	line:11
+authors	../feature_selection/find_signature.py	/^authors = pickle.load(open(authors_file, "rb"))$/;"	kind:variable	line:18
+authors_file	../feature_selection/find_signature.py	/^authors_file = "text_learning\/your_email_authors.pkl"$/;"	kind:variable	line:16
+base64	../choose_your_own/class_vis.py	/^import base64$/;"	kind:namespace	line:46
+base64	../simple_classifier/class_vis.py	/^import base64$/;"	kind:namespace	line:52
+bayes	../simple_classifier/classifiers.py	/^        from sklearn.naive_bayes import GaussianNB  # --> gaussian naive bayes$/;"	kind:namespace	line:60
+best_variance	../pca/eigenfaces.py	/^best_variance = filter(lambda condition: condition > 0.1, pca.explained_variance_ratio_)$/;"	kind:variable	line:73
+bonus	../outliers/enron_outliers.py	/^    bonus = point[1]$/;"	kind:variable	line:21
+bumpy_fast	../choose_your_own/your_algorithm.py	/^bumpy_fast = [features_train[ii][1] for ii in range(0, len(features_train)) if labels_train[ii] == 0]$/;"	kind:variable	line:16
+bumpy_fast	../simple_classifier/main.py	/^bumpy_fast = [features_train[ii][1] for ii in range(0, len(features_train)) if labels_train[ii] == 0]$/;"	kind:variable	line:22
+bumpy_slow	../choose_your_own/your_algorithm.py	/^bumpy_slow = [features_train[ii][1] for ii in range(0, len(features_train)) if labels_train[ii] == 1]$/;"	kind:variable	line:18
+bumpy_slow	../simple_classifier/main.py	/^bumpy_slow = [features_train[ii][1] for ii in range(0, len(features_train)) if labels_train[ii] == 1]$/;"	kind:variable	line:24
+cPickle	../tools/email_preprocess.py	/^import _pickle as cPickle$/;"	kind:namespace	line:4
+chris_found	../decision_tree/dt_author_id.py	/^chris_found = 0$/;"	kind:variable	line:59
+chris_found	../naive_bayes/nb_author_id.py	/^chris_found = 0$/;"	kind:variable	line:80
+chris_found	../svm/svm_author_id.py	/^chris_found = 0$/;"	kind:variable	line:81
+class_vis.py	../choose_your_own/class_vis.py	1;"	kind:file	line:1
+class_vis.py	../simple_classifier/class_vis.py	1;"	kind:file	line:1
+classification_report	../pca/eigenfaces.py	/^from sklearn.metrics import classification_report, confusion_matrix$/;"	kind:namespace	line:18
+classifier	../simple_classifier/classifiers.py	/^        from sklearn.svm import SVC  # --> support vector classifier$/;"	kind:namespace	line:71
+classifier	../validation/validate_poi.py	/^classifier = DecisionTreeClassifier(min_samples_split=2)$/;"	kind:variable	line:27
+classifier_adaboost	../choose_your_own/your_algorithm.py	/^classifier_adaboost = AdaBoostClassifier(n_estimators=100)$/;"	kind:variable	line:35
+classifier_decision_tree	../decision_tree/dt_author_id.py	/^classifier_decision_tree = DecisionTreeClassifier(min_samples_split=40,$/;"	kind:variable	line:35
+classifier_nb	../naive_bayes/nb_author_id.py	/^classifier_nb = GaussianNB()$/;"	kind:variable	line:62
+classifier_random_forest	../choose_your_own/your_algorithm.py	/^classifier_random_forest = RandomForestClassifier(n_estimators=10,$/;"	kind:variable	line:36
+classifier_svm	../svm/svm_author_id.py	/^classifier_svm = SVC(kernel="rbf",  # try linear, rbf$/;"	kind:variable	line:62
+classifiers.py	../simple_classifier/classifiers.py	1;"	kind:file	line:1
+classify.py	../simple_classifier/classify.py	1;"	kind:file	line:1
+classify_adaboost	../simple_classifier/classifiers.py	/^    def classify_adaboost(self, features_train, labels_train, features_test, labels_test):$/;"	kind:member	line:104
+classify_dt	../simple_classifier/classifiers.py	/^    def classify_dt(self, features_train, labels_train, features_test, labels_test):$/;"	kind:member	line:93
+classify_nb	../simple_classifier/classifiers.py	/^    def classify_nb(self, features_train, labels_train, features_test, labels_test):$/;"	kind:member	line:59
+classify_random_forest	../simple_classifier/classifiers.py	/^    def classify_random_forest(self, features_train, labels_train, features_test, labels_test):$/;"	kind:member	line:115
+classify_svm	../simple_classifier/classifiers.py	/^    def classify_svm(self, features_train, labels_train, features_test, labels_test):$/;"	kind:member	line:70
+cleaned_data	../outliers/outlier_removal_regression.py	/^    cleaned_data = outlierCleaner(predictions, ages_train, net_worths_train)$/;"	kind:variable	line:45
+cleaned_data	../outliers/outlier_removal_regression.py	/^cleaned_data = []$/;"	kind:variable	line:42
+clf	../final_project/poi_id.py	/^clf = GaussianNB()$/;"	kind:variable	line:36
+clf	../pca/eigenfaces.py	/^clf = GridSearchCV(default_svc, param_grid)$/;"	kind:variable	line:108
+clf	../pca/eigenfaces.py	/^clf = clf.fit(X_train_pca, y_train)  # principal components are used in place of input features$/;"	kind:variable	line:109
+confusion_matrix	../pca/eigenfaces.py	/^from sklearn.metrics import classification_report, confusion_matrix$/;"	kind:namespace	line:18
+count_vectorizer	../simple_classifier/classifiers.py	/^    def count_vectorizer(self):$/;"	kind:member	line:239
+data	../evaluation/evaluate_poi_identifier.py	/^data = feature_format(data_dict, features_list)$/;"	kind:variable	line:24
+data	../final_project/poi_id.py	/^data = feature_format(my_dataset, features_list, sort_keys = True)$/;"	kind:variable	line:25
+data	../k_means/k_means_cluster.py	/^data = feature_format(data_dict, features_list)$/;"	kind:variable	line:53
+data	../outliers/enron_outliers.py	/^data = feature_format(data_dict, features)$/;"	kind:variable	line:17
+data	../regression/finance_regression.py	/^data = feature_format(dictionary, features_list, remove_any_zeroes=True)$/;"	kind:variable	line:37
+data	../validation/validate_poi.py	/^data = feature_format(data_dict, features_list)$/;"	kind:variable	line:19
+data_dict	../evaluation/evaluate_poi_identifier.py	/^data_dict = pickle.load(open("..\/final_project\/final_project_dataset.pkl", "rb") )$/;"	kind:variable	line:19
+data_dict	../final_project/poi_id.py	/^    data_dict = pickle.load(data_file)$/;"	kind:variable	line:17
+data_dict	../k_means/k_means_cluster.py	/^data_dict = pickle.load(open("final_project\/final_project_dataset.pkl", "rb"))$/;"	kind:variable	line:36
+data_dict	../outliers/enron_outliers.py	/^data_dict = pickle.load(open("final_project\/final_project_dataset.pkl", "rb"))$/;"	kind:variable	line:11
+data_dict	../validation/validate_poi.py	/^data_dict = pickle.load(open("..\/final_project\/final_project_dataset.pkl", "rb"))$/;"	kind:variable	line:12
+default_svc	../pca/eigenfaces.py	/^default_svc = SVC(class_weight='balanced')$/;"	kind:variable	line:107
+dictionary	../regression/finance_regression.py	/^dictionary = pickle.load(open("..\/final_project\/final_project_dataset_modified.pkl", "rb"))$/;"	kind:variable	line:24
+dictionary	../simple_classifier/classifiers.py	/^dictionary = pickle.load(open("final_project\/final_project_dataset_modified.pkl", mode="rb"))$/;"	kind:variable	line:37
+dt_author_id.py	../decision_tree/dt_author_id.py	1;"	kind:file	line:1
+dt_classifier	../feature_selection/find_signature.py	/^dt_classifier = DecisionTreeClassifier(min_samples_split=2)$/;"	kind:variable	line:41
+dump_classifier_and_data	../final_project/poi_id.py	/^from tester import dump_classifier_and_data$/;"	kind:namespace	line:8
+dump_classifier_and_data	../final_project/tester.py	/^def dump_classifier_and_data(clf, dataset, feature_list):$/;"	kind:function	line:81
+eigenface_titles	../pca/eigenfaces.py	/^eigenface_titles = ["eigenface %d" % i for i in range(eigenfaces.shape[0])]$/;"	kind:variable	line:154
+eigenfaces	../pca/eigenfaces.py	/^eigenfaces = pca.components_.reshape((n_components, h, w))$/;"	kind:variable	line:75
+eigenfaces.py	../pca/eigenfaces.py	1;"	kind:file	line:1
+email	../text_learning/vectorize_text.py	/^        email = open(path, "rb")$/;"	kind:variable	line:34
+email_preprocess.py	../tools/email_preprocess.py	1;"	kind:file	line:1
+email_text	../text_learning/vectorize_text.py	/^            email_text = email_text.replace(_word_, "")$/;"	kind:variable	line:42
+email_text	../text_learning/vectorize_text.py	/^        email_text = parseOutText(email)$/;"	kind:variable	line:37
+enron_data	../datasets_questions/explore_enron_data.py	/^enron_data = pickle.load(open("..\/final_project\/final_project_dataset.pkl", "rb"))$/;"	kind:variable	line:25
+enron_outliers.py	../outliers/enron_outliers.py	1;"	kind:file	line:1
+evaluate_poi_identifier.py	../evaluation/evaluate_poi_identifier.py	1;"	kind:file	line:1
+exercised_stock_options_values	../k_means/k_means_cluster.py	/^exercised_stock_options_values = []$/;"	kind:variable	line:67
+explore_enron_data.py	../datasets_questions/explore_enron_data.py	1;"	kind:file	line:1
+f1_name	../k_means/k_means_cluster.py	/^         f1_name=feature_1,$/;"	kind:variable	line:113
+f1_score	../simple_classifier/classifiers.py	/^        from sklearn.metrics import f1_score$/;"	kind:namespace	line:73
+f2_name	../k_means/k_means_cluster.py	/^         f2_name=feature_2)$/;"	kind:variable	line:114
+f_classif	../tools/email_preprocess.py	/^from sklearn.feature_selection import SelectPercentile, f_classif$/;"	kind:namespace	line:9
+fast_count_adaboost	../choose_your_own/your_algorithm.py	/^fast_count_adaboost = 0$/;"	kind:variable	line:50
+fast_count_random_forest	../choose_your_own/your_algorithm.py	/^fast_count_random_forest = 0$/;"	kind:variable	line:52
+feature_1	../k_means/k_means_cluster.py	/^feature_1 = "salary"$/;"	kind:variable	line:40
+feature_2	../k_means/k_means_cluster.py	/^feature_2 = "exercised_stock_options"$/;"	kind:variable	line:41
+feature_3	../k_means/k_means_cluster.py	/^feature_3 = "total_payments"$/;"	kind:variable	line:42
+feature_format	../datasets_questions/explore_enron_data.py	/^from feature_format import feature_format$/;"	kind:namespace	line:21
+feature_format	../evaluation/evaluate_poi_identifier.py	/^from feature_format import feature_format, target_feature_split$/;"	kind:namespace	line:17
+feature_format	../final_project/poi_id.py	/^from feature_format import feature_format, target_feature_split$/;"	kind:namespace	line:7
+feature_format	../final_project/tester.py	/^from feature_format import feature_format, target_feature_split$/;"	kind:namespace	line:17
+feature_format	../k_means/k_means_cluster.py	/^from feature_format import feature_format, target_feature_split$/;"	kind:namespace	line:9
+feature_format	../outliers/enron_outliers.py	/^from feature_format import feature_format, target_feature_split$/;"	kind:namespace	line:8
+feature_format	../regression/finance_regression.py	/^from feature_format import feature_format, target_feature_split$/;"	kind:namespace	line:22
+feature_format	../simple_classifier/classifiers.py	/^from feature_format import feature_format, target_feature_split$/;"	kind:namespace	line:35
+feature_format	../tools/feature_format.py	/^def feature_format(dictionary, $/;"	kind:function	line:36
+feature_format	../validation/validate_poi.py	/^from feature_format import feature_format, target_feature_split$/;"	kind:namespace	line:7
+feature_format.py	../tools/feature_format.py	1;"	kind:file	line:1
+feature_rescale	../simple_classifier/classifiers.py	/^    def feature_rescale(self, arr):$/;"	kind:member	line:214
+features	../outliers/enron_outliers.py	/^features = ["salary", "bonus"]$/;"	kind:variable	line:12
+features_list	../evaluation/evaluate_poi_identifier.py	/^features_list = ["poi", "salary"]$/;"	kind:variable	line:22
+features_list	../final_project/poi_id.py	/^features_list = ['poi','salary'] # You will need to use more features$/;"	kind:variable	line:13
+features_list	../k_means/k_means_cluster.py	/^features_list = [poi,$/;"	kind:variable	line:48
+features_list	../regression/finance_regression.py	/^features_list = [$/;"	kind:variable	line:27
+features_list	../simple_classifier/classifiers.py	/^features_list = [$/;"	kind:variable	line:41
+features_list	../text_learning/vectorize_text.py	/^features_list = vectorizer.get_feature_names()$/;"	kind:variable	line:53
+features_list	../validation/validate_poi.py	/^features_list = ["poi", "salary"]$/;"	kind:variable	line:17
+features_test	../feature_selection/find_signature.py	/^features_test = vectorizer.transform(features_test).toarray()$/;"	kind:variable	line:34
+features_train	../choose_your_own/your_algorithm.py	/^    features_train = features_train[:len(features_train) \/ reducer]$/;"	kind:variable	line:32
+features_train	../decision_tree/dt_author_id.py	/^features_train = features_train[:int(len(features_train) \/ reduce_size)]$/;"	kind:variable	line:28
+features_train	../feature_selection/find_signature.py	/^features_train = features_train[:150].toarray()$/;"	kind:variable	line:38
+features_train	../feature_selection/find_signature.py	/^features_train = vectorizer.fit_transform(features_train)$/;"	kind:variable	line:33
+features_train	../naive_bayes/nb_author_id.py	/^features_train = features_train[:int(len(features_train) \/ reduce_size)]$/;"	kind:variable	line:55
+features_train	../svm/svm_author_id.py	/^features_train = features_train[:int(len(features_train) \/ reduce_size)]$/;"	kind:variable	line:55
+fetch_lfw_people	../pca/eigenfaces.py	/^from sklearn.datasets import fetch_lfw_people$/;"	kind:namespace	line:20
+finance_regression.py	../regression/finance_regression.py	1;"	kind:file	line:1
+find_signature.py	../feature_selection/find_signature.py	1;"	kind:file	line:1
+from_chris	../text_learning/vectorize_text.py	/^from_chris = open("..\/text_learning\/from_chris.txt", "rb")$/;"	kind:variable	line:24
+from_data	../text_learning/vectorize_text.py	/^from_data = []$/;"	kind:variable	line:26
+from_sara	../text_learning/vectorize_text.py	/^from_sara = open("..\/text_learning\/from_sara.txt", "rb")  # rb --> read as bytes$/;"	kind:variable	line:23
+gaussian	../simple_classifier/classifiers.py	/^        from sklearn.naive_bayes import GaussianNB  # --> gaussian naive bayes$/;"	kind:namespace	line:60
+grade_fast	../choose_your_own/your_algorithm.py	/^grade_fast = [features_train[ii][0] for ii in range(0, len(features_train)) if labels_train[ii] == 0]$/;"	kind:variable	line:15
+grade_fast	../simple_classifier/main.py	/^grade_fast = [features_train[ii][0] for ii in range(0, len(features_train)) if labels_train[ii] == 0]$/;"	kind:variable	line:21
+grade_slow	../choose_your_own/your_algorithm.py	/^grade_slow = [features_train[ii][0] for ii in range(0, len(features_train)) if labels_train[ii] == 1]$/;"	kind:variable	line:17
+grade_slow	../simple_classifier/main.py	/^grade_slow = [features_train[ii][0] for ii in range(0, len(features_train)) if labels_train[ii] == 1]$/;"	kind:variable	line:23
+intercept_prediction	../regression/finance_regression.py	/^intercept_prediction = reg.intercept_$/;"	kind:variable	line:53
+json	../choose_your_own/class_vis.py	/^import json$/;"	kind:namespace	line:47
+json	../simple_classifier/class_vis.py	/^import json$/;"	kind:namespace	line:53
+k_means_cluster.py	../k_means/k_means_cluster.py	1;"	kind:file	line:1
+kmeans_cluster	../k_means/k_means_cluster.py	/^kmeans_cluster = KMeans(n_clusters=2,  # how many clusters$/;"	kind:variable	line:88
+kmeans_cluster	../simple_classifier/classifiers.py	/^    def kmeans_cluster(self, features):$/;"	kind:member	line:200
+known_emails	../datasets_questions/explore_enron_data.py	/^known_emails = 0$/;"	kind:variable	line:57
+known_salaries	../datasets_questions/explore_enron_data.py	/^known_salaries = 0$/;"	kind:variable	line:56
+labels_predicted	../choose_your_own/your_algorithm.py	/^labels_predicted = classifier_adaboost.predict(features_test)$/;"	kind:variable	line:44
+labels_predicted	../decision_tree/dt_author_id.py	/^labels_predicted = classifier_decision_tree.predict(features_test)$/;"	kind:variable	line:50
+labels_predicted	../feature_selection/find_signature.py	/^labels_predicted = dt_classifier.predict(features_test)$/;"	kind:variable	line:43
+labels_predicted	../naive_bayes/nb_author_id.py	/^labels_predicted = classifier_nb.predict(features_test)$/;"	kind:variable	line:70
+labels_predicted	../svm/svm_author_id.py	/^labels_predicted = classifier_svm.predict(features_test)$/;"	kind:variable	line:70
+labels_predicted_random_forest	../choose_your_own/your_algorithm.py	/^labels_predicted_random_forest = classifier_random_forest.predict(features_test)$/;"	kind:variable	line:45
+labels_train	../choose_your_own/your_algorithm.py	/^    labels_train = labels_train[:len(labels_train) \/ reducer]$/;"	kind:variable	line:33
+labels_train	../decision_tree/dt_author_id.py	/^labels_train = labels_train[:int(len(labels_train) \/ reduce_size)]$/;"	kind:variable	line:29
+labels_train	../feature_selection/find_signature.py	/^labels_train = labels_train[:150]$/;"	kind:variable	line:39
+labels_train	../naive_bayes/nb_author_id.py	/^labels_train = labels_train[:int(len(labels_train) \/ reduce_size)]$/;"	kind:variable	line:56
+labels_train	../svm/svm_author_id.py	/^labels_train = labels_train[:int(len(labels_train) \/ reduce_size)]$/;"	kind:variable	line:56
+lfw_people	../pca/eigenfaces.py	/^lfw_people = fetch_lfw_people(min_faces_per_person=70, resize=0.4)$/;"	kind:variable	line:30
+load_classifier_and_data	../final_project/tester.py	/^def load_classifier_and_data():$/;"	kind:function	line:89
+logging	../pca/eigenfaces.py	/^import logging$/;"	kind:namespace	line:14
+main	../final_project/tester.py	/^def main():$/;"	kind:function	line:98
+main	../tools/parse_out_email_text.py	/^def main():$/;"	kind:function	line:40
+main.py	../simple_classifier/main.py	1;"	kind:file	line:1
+makeTerrainData	../choose_your_own/prep_terrain_data.py	/^def makeTerrainData(n_points=1000):$/;"	kind:function	line:5
+makeTerrainData	../choose_your_own/your_algorithm.py	/^from prep_terrain_data import makeTerrainData$/;"	kind:namespace	line:4
+makeTerrainData	../simple_classifier/main.py	/^from prep_terrain_data import makeTerrainData$/;"	kind:namespace	line:9
+makeTerrainData	../simple_classifier/prep_terrain_data.py	/^def makeTerrainData(n_points=1000):$/;"	kind:function	line:4
+math	../datasets_questions/explore_enron_data.py	/^import math$/;"	kind:namespace	line:19
+matplotlib	../choose_your_own/class_vis.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:4
+matplotlib	../choose_your_own/your_algorithm.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:3
+matplotlib	../k_means/k_means_cluster.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:3
+matplotlib	../outliers/enron_outliers.py	/^import matplotlib.pyplot$/;"	kind:namespace	line:5
+matplotlib	../outliers/outlier_removal_regression.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:5
+matplotlib	../regression/finance_regression.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:18
+matplotlib	../simple_classifier/class_vis.py	/^import matplotlib$/;"	kind:namespace	line:5
+matplotlib	../simple_classifier/class_vis.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:9
+matplotlib	../simple_classifier/classifiers.py	/^        import matplotlib.pyplot as plt$/;"	kind:namespace	line:139
+max_depth	../choose_your_own/your_algorithm.py	/^                                                  max_depth=None,$/;"	kind:variable	line:37
+max_iter	../k_means/k_means_cluster.py	/^                        max_iter=300,  # max iterations if tolerance not reached$/;"	kind:variable	line:90
+min_samples_split	../choose_your_own/your_algorithm.py	/^                                                  min_samples_split=40,$/;"	kind:variable	line:38
+ml	../simple_classifier/classifiers.py	/^ml = MachineLearningAlgorithms()$/;"	kind:variable	line:406
+model_selection	../feature_selection/find_signature.py	/^from sklearn import model_selection$/;"	kind:namespace	line:5
+model_selection	../tools/email_preprocess.py	/^from sklearn import model_selection$/;"	kind:namespace	line:7
+my_dataset	../final_project/poi_id.py	/^my_dataset = data_dict$/;"	kind:variable	line:22
+n_classes	../pca/eigenfaces.py	/^n_classes = target_names.shape[0]$/;"	kind:variable	line:44
+n_components	../pca/eigenfaces.py	/^n_components = 100$/;"	kind:variable	line:60
+n_features	../pca/eigenfaces.py	/^n_features = X.shape[1]$/;"	kind:variable	line:39
+n_init	../k_means/k_means_cluster.py	/^                        n_init=10,  # try 10 initial random centroids$/;"	kind:variable	line:89
+naive	../simple_classifier/classifiers.py	/^        from sklearn.naive_bayes import GaussianNB  # --> gaussian naive bayes$/;"	kind:namespace	line:60
+name	../k_means/k_means_cluster.py	/^         name="clusters-2-features.pdf",$/;"	kind:variable	line:112
+nb_author_id.py	../naive_bayes/nb_author_id.py	1;"	kind:file	line:1
+net_worths	../outliers/outlier_removal_regression.py	/^    net_worths = numpy.reshape(numpy.array(net_worths), (len(net_worths), 1))$/;"	kind:variable	line:54
+net_worths	../outliers/outlier_removal_regression.py	/^net_worths = numpy.reshape(numpy.array(net_worths), (len(net_worths), 1))$/;"	kind:variable	line:19
+net_worths	../outliers/outlier_removal_regression.py	/^net_worths = pickle.load(open("practice_outliers_net_worths.pkl", "r"))$/;"	kind:variable	line:12
+net_worths_prediction	../outliers/outlier_removal_regression.py	/^net_worths_prediction = reg.predict(ages_test)$/;"	kind:variable	line:29
+nltk	../tools/startup.py	/^    import nltk$/;"	kind:namespace	line:6
+np	../choose_your_own/class_vis.py	/^import numpy as np$/;"	kind:namespace	line:3
+np	../pca/eigenfaces.py	/^import numpy as np$/;"	kind:namespace	line:16
+np	../simple_classifier/class_vis.py	/^import numpy as np$/;"	kind:namespace	line:11
+np	../simple_classifier/classifiers.py	/^        import numpy as np$/;"	kind:namespace	line:140
+np	../simple_classifier/classifiers.py	/^        import numpy as np$/;"	kind:namespace	line:215
+np	../simple_classifier/main.py	/^import numpy as np$/;"	kind:namespace	line:13
+np	../tools/feature_format.py	/^import numpy as np$/;"	kind:namespace	line:33
+number_of_poi	../datasets_questions/explore_enron_data.py	/^number_of_poi = 0$/;"	kind:variable	line:39
+numpy	../feature_selection/find_signature.py	/^import numpy$/;"	kind:namespace	line:4
+numpy	../outliers/outlier_removal_regression.py	/^import numpy$/;"	kind:namespace	line:4
+numpy	../tools/email_preprocess.py	/^import numpy$/;"	kind:namespace	line:5
+numpy	../tools/startup.py	/^    import numpy$/;"	kind:namespace	line:12
+os	../text_learning/vectorize_text.py	/^import os$/;"	kind:namespace	line:2
+os	../tools/startup.py	/^import os$/;"	kind:namespace	line:42
+outlierCleaner	../outliers/outlier_cleaner.py	/^def outlierCleaner(predictions,  # predictions of net worth$/;"	kind:function	line:12
+outlierCleaner	../outliers/outlier_removal_regression.py	/^from outlier_cleaner import outlierCleaner$/;"	kind:namespace	line:8
+outlier_cleaner.py	../outliers/outlier_cleaner.py	1;"	kind:file	line:1
+outlier_removal_regression.py	../outliers/outlier_removal_regression.py	1;"	kind:file	line:1
+output_image	../choose_your_own/class_vis.py	/^def output_image(name, format, bytes):$/;"	kind:function	line:51
+output_image	../simple_classifier/class_vis.py	/^def output_image(name, format, bytes):$/;"	kind:function	line:57
+output_image	../simple_classifier/main.py	/^from class_vis import prettyPicture, output_image$/;"	kind:namespace	line:10
+param_grid	../pca/eigenfaces.py	/^param_grid = {$/;"	kind:variable	line:102
+parseOutText	../text_learning/vectorize_text.py	/^from parse_out_email_text import parseOutText$/;"	kind:namespace	line:8
+parseOutText	../tools/parse_out_email_text.py	/^def parseOutText(f):$/;"	kind:function	line:7
+parse_out_email_text.py	../tools/parse_out_email_text.py	1;"	kind:file	line:1
+path	../text_learning/vectorize_text.py	/^        path = os.path.join('..', path[:-1])$/;"	kind:variable	line:32
+payments_nan	../datasets_questions/explore_enron_data.py	/^payments_nan = 0$/;"	kind:variable	line:58
+pca	../pca/eigenfaces.py	/^pca = PCA(n_components=n_components, whiten=True).fit(X_train)$/;"	kind:variable	line:64
+perform_k_fold_and_grid_search	../simple_classifier/classifiers.py	/^    def perform_k_fold_and_grid_search(self, data):$/;"	kind:member	line:365
+perform_linear_regression	../simple_classifier/classifiers.py	/^    def perform_linear_regression(self):$/;"	kind:member	line:126
+pickle	../datasets_questions/explore_enron_data.py	/^import pickle$/;"	kind:namespace	line:18
+pickle	../evaluation/evaluate_poi_identifier.py	/^import pickle$/;"	kind:namespace	line:14
+pickle	../feature_selection/find_signature.py	/^import pickle$/;"	kind:namespace	line:3
+pickle	../final_project/poi_id.py	/^import pickle$/;"	kind:namespace	line:4
+pickle	../final_project/tester.py	/^import pickle$/;"	kind:namespace	line:13
+pickle	../k_means/k_means_cluster.py	/^import pickle$/;"	kind:namespace	line:2
+pickle	../outliers/enron_outliers.py	/^import pickle$/;"	kind:namespace	line:3
+pickle	../outliers/outlier_removal_regression.py	/^import pickle$/;"	kind:namespace	line:6
+pickle	../regression/finance_regression.py	/^import pickle$/;"	kind:namespace	line:16
+pickle	../simple_classifier/classifiers.py	/^import pickle$/;"	kind:namespace	line:31
+pickle	../text_learning/vectorize_text.py	/^import pickle$/;"	kind:namespace	line:3
+pickle	../tools/email_preprocess.py	/^import pickle$/;"	kind:namespace	line:3
+pickle	../tools/feature_format.py	/^        import pickle$/;"	kind:namespace	line:61
+pickle	../validation/validate_poi.py	/^import pickle$/;"	kind:namespace	line:3
+pl	../choose_your_own/class_vis.py	/^import pylab as pl$/;"	kind:namespace	line:5
+pl	../pca/eigenfaces.py	/^import pylab as pl$/;"	kind:namespace	line:15
+pl	../simple_classifier/class_vis.py	/^import pylab as pl$/;"	kind:namespace	line:10
+pl	../simple_classifier/main.py	/^import pylab as pl$/;"	kind:namespace	line:14
+plot_gallery	../pca/eigenfaces.py	/^def plot_gallery(images, titles, h, w, n_row=3, n_col=4):$/;"	kind:function	line:127
+plt	../choose_your_own/class_vis.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:4
+plt	../choose_your_own/your_algorithm.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:3
+plt	../k_means/k_means_cluster.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:3
+plt	../outliers/outlier_removal_regression.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:5
+plt	../regression/finance_regression.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:18
+plt	../simple_classifier/class_vis.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:9
+plt	../simple_classifier/classifiers.py	/^        import matplotlib.pyplot as plt$/;"	kind:namespace	line:139
+poi	../k_means/k_means_cluster.py	/^poi = "poi"$/;"	kind:variable	line:43
+poiEmails	../final_project/poi_email_addresses.py	/^def poiEmails():$/;"	kind:function	line:1
+poi_email_addresses.py	../final_project/poi_email_addresses.py	1;"	kind:file	line:1
+poi_id.py	../final_project/poi_id.py	1;"	kind:file	line:1
+poi_payments_nan	../datasets_questions/explore_enron_data.py	/^poi_payments_nan = 0$/;"	kind:variable	line:59
+poi_payments_nan	../datasets_questions/explore_enron_data.py	/^poi_payments_nan = float(poi_payments_nan) \/ len(number_of_poi) * 100 if poi_payments_nan > 0 else poi_payments_nan$/;"	kind:variable	line:74
+predict_time	../decision_tree/dt_author_id.py	/^predict_time = time()$/;"	kind:variable	line:49
+predicted_labels	../validation/validate_poi.py	/^predicted_labels = classifier.predict(features_test)$/;"	kind:variable	line:29
+prediction	../k_means/k_means_cluster.py	/^prediction = kmeans_cluster.predict(finance_features)$/;"	kind:variable	line:96
+prediction_titles	../pca/eigenfaces.py	/^prediction_titles = [title(y_pred, y_test, target_names, i)$/;"	kind:variable	line:147
+predictions	../outliers/outlier_removal_regression.py	/^    predictions = reg.predict(ages_train)$/;"	kind:variable	line:44
+prep_terrain_data.py	../choose_your_own/prep_terrain_data.py	1;"	kind:file	line:1
+prep_terrain_data.py	../simple_classifier/prep_terrain_data.py	1;"	kind:file	line:1
+preprocess	../decision_tree/dt_author_id.py	/^from email_preprocess import preprocess$/;"	kind:namespace	line:18
+preprocess	../naive_bayes/nb_author_id.py	/^from email_preprocess import preprocess$/;"	kind:namespace	line:19
+preprocess	../svm/svm_author_id.py	/^from email_preprocess import preprocess$/;"	kind:namespace	line:16
+preprocess	../tools/email_preprocess.py	/^def preprocess(words_file="..\/tools\/word_data.pkl", authors_file="..\/tools\/email_authors.pkl"):$/;"	kind:function	line:12
+prettyPicture	../choose_your_own/class_vis.py	/^def prettyPicture(clf, X_test, y_test):$/;"	kind:function	line:8
+prettyPicture	../choose_your_own/your_algorithm.py	/^from class_vis import prettyPicture$/;"	kind:namespace	line:5
+prettyPicture	../simple_classifier/class_vis.py	/^def prettyPicture(clf, X_test, y_test):$/;"	kind:function	line:18
+prettyPicture	../simple_classifier/main.py	/^from class_vis import prettyPicture, output_image$/;"	kind:namespace	line:10
+principal_component_analysis	../simple_classifier/classifiers.py	/^    def principal_component_analysis(self, train=feature_train, test=feature_test):$/;"	kind:member	line:352
+print_function	../simple_classifier/classifiers.py	/^from __future__ import print_function$/;"	kind:namespace	line:29
+print_function	../validation/validate_poi.py	/^from __future__ import print_function$/;"	kind:namespace	line:2
+pyplot	../outliers/enron_outliers.py	/^import matplotlib.pyplot$/;"	kind:namespace	line:5
+r_square_result	../regression/finance_regression.py	/^r_square_result = reg.score(feature_test, target_test) # input, output comparison for test$/;"	kind:variable	line:59
+r_square_train_result	../regression/finance_regression.py	/^r_square_train_result = reg.score(feature_train, target_train) # input, output comparison for train$/;"	kind:variable	line:60
+random	../choose_your_own/prep_terrain_data.py	/^import random$/;"	kind:namespace	line:2
+random	../outliers/outlier_removal_regression.py	/^import random$/;"	kind:namespace	line:3
+random	../simple_classifier/classifiers.py	/^        import random$/;"	kind:namespace	line:141
+random	../simple_classifier/prep_terrain_data.py	/^import random$/;"	kind:namespace	line:1
+random_state	../choose_your_own/your_algorithm.py	/^                                                  random_state=0)$/;"	kind:variable	line:39
+random_state	../feature_selection/find_signature.py	/^    random_state=42$/;"	kind:variable	line:28
+random_state	../outliers/outlier_removal_regression.py	/^                                                                            random_state=42)$/;"	kind:variable	line:23
+random_state	../regression/finance_regression.py	/^                                                                          random_state=42)$/;"	kind:variable	line:42
+random_state	../simple_classifier/classifiers.py	/^                                                                          random_state=42)$/;"	kind:variable	line:55
+random_state	../validation/validate_poi.py	/^                                                                            random_state=42$/;"	kind:variable	line:25
+raw_data	../simple_classifier/classifiers.py	/^raw_data = feature_format(dictionary, features_list, remove_any_zeroes=True)$/;"	kind:variable	line:50
+reduce_size	../decision_tree/dt_author_id.py	/^reduce_size = 1$/;"	kind:variable	line:24
+reduce_size	../naive_bayes/nb_author_id.py	/^reduce_size = 100$/;"	kind:variable	line:51
+reduce_size	../svm/svm_author_id.py	/^reduce_size = 10$/;"	kind:variable	line:51
+reducer	../choose_your_own/your_algorithm.py	/^reducer = 1$/;"	kind:variable	line:30
+reg	../outliers/outlier_removal_regression.py	/^reg = LinearRegression()$/;"	kind:variable	line:27
+reg	../regression/finance_regression.py	/^reg = LinearRegression()$/;"	kind:variable	line:50
+reg_score	../outliers/outlier_removal_regression.py	/^reg_score = reg.score(ages_test, net_worths_test)$/;"	kind:variable	line:30
+salary	../outliers/enron_outliers.py	/^    salary = point[0]$/;"	kind:variable	line:20
+salary_values	../k_means/k_means_cluster.py	/^salary_values = []$/;"	kind:variable	line:68
+sara_found	../decision_tree/dt_author_id.py	/^sara_found = 0$/;"	kind:variable	line:60
+sara_found	../naive_bayes/nb_author_id.py	/^sara_found = 0$/;"	kind:variable	line:81
+sara_found	../svm/svm_author_id.py	/^sara_found = 0$/;"	kind:variable	line:82
+scipy	../tools/startup.py	/^    import scipy$/;"	kind:namespace	line:18
+sklearn	../tools/startup.py	/^    import sklearn$/;"	kind:namespace	line:24
+slope_prediction	../regression/finance_regression.py	/^slope_prediction = reg.coef_$/;"	kind:variable	line:54
+slow_count_adaboost	../choose_your_own/your_algorithm.py	/^slow_count_adaboost = 0$/;"	kind:variable	line:51
+slow_count_random_forest	../choose_your_own/your_algorithm.py	/^slow_count_random_forest = 0$/;"	kind:variable	line:53
+startup.py	../tools/startup.py	1;"	kind:file	line:1
+stemmering	../simple_classifier/classifiers.py	/^    def stemmering(self):$/;"	kind:member	line:311
+stop_words	../feature_selection/find_signature.py	/^                             stop_words='english')$/;"	kind:variable	line:32
+stop_words	../simple_classifier/classifiers.py	/^    def stop_words(self):$/;"	kind:member	line:286
+stopwords	../simple_classifier/classifiers.py	/^        from nltk.corpus import stopwords$/;"	kind:namespace	line:292
+stopwords	../simple_classifier/classifiers.py	/^        from nltk.corpus import stopwords$/;"	kind:namespace	line:326
+string	../tools/parse_out_email_text.py	/^import string$/;"	kind:namespace	line:4
+subprocess	../choose_your_own/class_vis.py	/^import subprocess$/;"	kind:namespace	line:48
+subprocess	../simple_classifier/class_vis.py	/^import subprocess$/;"	kind:namespace	line:54
+support	../simple_classifier/classifiers.py	/^        from sklearn.svm import SVC  # --> support vector classifier$/;"	kind:namespace	line:71
+svm_author_id.py	../svm/svm_author_id.py	1;"	kind:file	line:1
+sys	../datasets_questions/explore_enron_data.py	/^import sys$/;"	kind:namespace	line:17
+sys	../decision_tree/dt_author_id.py	/^import sys$/;"	kind:namespace	line:11
+sys	../evaluation/evaluate_poi_identifier.py	/^import sys$/;"	kind:namespace	line:15
+sys	../final_project/poi_id.py	/^import sys$/;"	kind:namespace	line:3
+sys	../final_project/tester.py	/^import sys$/;"	kind:namespace	line:14
+sys	../k_means/k_means_cluster.py	/^import sys$/;"	kind:namespace	line:4
+sys	../naive_bayes/nb_author_id.py	/^import sys$/;"	kind:namespace	line:13
+sys	../outliers/enron_outliers.py	/^import sys$/;"	kind:namespace	line:4
+sys	../regression/finance_regression.py	/^import sys$/;"	kind:namespace	line:15
+sys	../simple_classifier/classifiers.py	/^import sys$/;"	kind:namespace	line:30
+sys	../svm/svm_author_id.py	/^import sys$/;"	kind:namespace	line:10
+sys	../text_learning/vectorize_text.py	/^import sys$/;"	kind:namespace	line:4
+sys	../validation/validate_poi.py	/^import sys$/;"	kind:namespace	line:4
+t0	../pca/eigenfaces.py	/^t0 = time()$/;"	kind:variable	line:117
+t0	../pca/eigenfaces.py	/^t0 = time()$/;"	kind:variable	line:63
+t0	../pca/eigenfaces.py	/^t0 = time()$/;"	kind:variable	line:78
+t0	../pca/eigenfaces.py	/^t0 = time()$/;"	kind:variable	line:99
+tarfile	../tools/startup.py	/^import tarfile$/;"	kind:namespace	line:41
+target_feature_split	../evaluation/evaluate_poi_identifier.py	/^from feature_format import feature_format, target_feature_split$/;"	kind:namespace	line:17
+target_feature_split	../final_project/poi_id.py	/^from feature_format import feature_format, target_feature_split$/;"	kind:namespace	line:7
+target_feature_split	../final_project/tester.py	/^from feature_format import feature_format, target_feature_split$/;"	kind:namespace	line:17
+target_feature_split	../k_means/k_means_cluster.py	/^from feature_format import feature_format, target_feature_split$/;"	kind:namespace	line:9
+target_feature_split	../outliers/enron_outliers.py	/^from feature_format import feature_format, target_feature_split$/;"	kind:namespace	line:8
+target_feature_split	../regression/finance_regression.py	/^from feature_format import feature_format, target_feature_split$/;"	kind:namespace	line:22
+target_feature_split	../simple_classifier/classifiers.py	/^from feature_format import feature_format, target_feature_split$/;"	kind:namespace	line:35
+target_feature_split	../tools/feature_format.py	/^def target_feature_split(data):$/;"	kind:function	line:109
+target_feature_split	../validation/validate_poi.py	/^from feature_format import feature_format, target_feature_split$/;"	kind:namespace	line:7
+target_names	../pca/eigenfaces.py	/^target_names = lfw_people.target_names$/;"	kind:variable	line:43
+target_prediction	../regression/finance_regression.py	/^target_prediction = reg.predict(feature_test)$/;"	kind:variable	line:52
+test_classifier	../final_project/tester.py	/^def test_classifier(clf, dataset, feature_list, folds = 1000):$/;"	kind:function	line:25
+test_color	../regression/finance_regression.py	/^test_color = "r"$/;"	kind:variable	line:44
+test_size	../feature_selection/find_signature.py	/^    test_size=0.1,$/;"	kind:variable	line:27
+test_size	../regression/finance_regression.py	/^                                                                          test_size=0.5,$/;"	kind:variable	line:41
+test_size	../simple_classifier/classifiers.py	/^                                                                          test_size=0.3,$/;"	kind:variable	line:54
+test_size	../validation/validate_poi.py	/^                                                                            test_size=0.3,$/;"	kind:variable	line:24
+tester.py	../final_project/tester.py	1;"	kind:file	line:1
+text_classification	../simple_classifier/classifiers.py	/^    def text_classification(self):$/;"	kind:member	line:324
+tfile	../tools/startup.py	/^tfile = tarfile.open("enron_mail_20150507.tgz", "r:gz")$/;"	kind:variable	line:44
+time	../decision_tree/dt_author_id.py	/^from time import time$/;"	kind:namespace	line:12
+time	../decision_tree/dt_author_id.py	/^from time import time$/;"	kind:namespace	line:14
+time	../naive_bayes/nb_author_id.py	/^from time import time$/;"	kind:namespace	line:14
+time	../pca/eigenfaces.py	/^from time import time$/;"	kind:namespace	line:13
+time	../svm/svm_author_id.py	/^from time import time$/;"	kind:namespace	line:11
+time_bayes	../naive_bayes/nb_author_id.py	/^time_bayes = time()$/;"	kind:variable	line:64
+time_predict_bayes	../naive_bayes/nb_author_id.py	/^time_predict_bayes = time()$/;"	kind:variable	line:68
+time_predict_svm	../svm/svm_author_id.py	/^time_predict_svm = time()$/;"	kind:variable	line:69
+time_svm	../svm/svm_author_id.py	/^time_svm = time()$/;"	kind:variable	line:65
+title	../pca/eigenfaces.py	/^def title(y_pred, y_test, target_names, i):$/;"	kind:function	line:141
+tol	../k_means/k_means_cluster.py	/^                        tol=0.0001)  # tolerance$/;"	kind:variable	line:91
+train_color	../regression/finance_regression.py	/^train_color = "b"$/;"	kind:variable	line:43
+train_test_split	../final_project/poi_id.py	/^from sklearn.cross_validation import train_test_split$/;"	kind:namespace	line:46
+train_test_split	../k_means/k_means_cluster.py	/^from sklearn.model_selection import train_test_split$/;"	kind:namespace	line:6
+train_test_split	../outliers/outlier_removal_regression.py	/^from sklearn.cross_validation import train_test_split$/;"	kind:namespace	line:20
+train_test_split	../pca/eigenfaces.py	/^from sklearn.model_selection import train_test_split$/;"	kind:namespace	line:19
+train_test_split	../regression/finance_regression.py	/^from sklearn.model_selection import train_test_split$/;"	kind:namespace	line:17
+train_test_split	../simple_classifier/classifiers.py	/^from sklearn.model_selection import train_test_split$/;"	kind:namespace	line:34
+train_test_split	../validation/validate_poi.py	/^from sklearn.model_selection import train_test_split$/;"	kind:namespace	line:8
+train_time	../decision_tree/dt_author_id.py	/^train_time = time()$/;"	kind:variable	line:45
+url	../tools/startup.py	/^url = "https:\/\/www.cs.cmu.edu\/~.\/enron\/enron_mail_20150507.tgz"$/;"	kind:variable	line:34
+urllib	../tools/startup.py	/^import urllib$/;"	kind:namespace	line:33
+validate_poi.py	../validation/validate_poi.py	1;"	kind:file	line:1
+vector	../simple_classifier/classifiers.py	/^        from sklearn.svm import SVC  # --> support vector classifier$/;"	kind:namespace	line:71
+vector_count	../text_learning/vectorize_text.py	/^vector_count = vectorizer.fit_transform(word_data).toarray()$/;"	kind:variable	line:51
+vectorize_text.py	../text_learning/vectorize_text.py	1;"	kind:file	line:1
+vectorizer	../feature_selection/find_signature.py	/^vectorizer = TfidfVectorizer(sublinear_tf=True, max_df=0.5,$/;"	kind:variable	line:31
+vectorizer	../text_learning/vectorize_text.py	/^vectorizer = TfidfVectorizer(min_df=1, stop_words="english")$/;"	kind:variable	line:49
+warnings	../simple_classifier/class_vis.py	/^import warnings$/;"	kind:namespace	line:1
+word_data	../feature_selection/find_signature.py	/^word_data = pickle.load(open(words_file, "rb"))$/;"	kind:variable	line:17
+word_data	../text_learning/vectorize_text.py	/^word_data = []$/;"	kind:variable	line:27
+words_file	../feature_selection/find_signature.py	/^words_file = "text_learning\/your_word_data.pkl"$/;"	kind:variable	line:15
+y	../pca/eigenfaces.py	/^y = lfw_people.target$/;"	kind:variable	line:42
+y_pred	../pca/eigenfaces.py	/^y_pred = clf.predict(X_test_pca)$/;"	kind:variable	line:118
+your_algorithm.py	../choose_your_own/your_algorithm.py	1;"	kind:file	line:1

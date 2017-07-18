@@ -27,12 +27,12 @@
 |__ K Fold                  |__ Train/Test Features Split
 """
 from __future__ import print_function
-import sys
+# import sys
 import pickle
-
-sys.path.append("tools/")
 from sklearn.model_selection import train_test_split
-from feature_format import feature_format, target_feature_split
+from tools.feature_format import feature_format, target_feature_split
+
+# sys.path.append("tools/")
 
 dictionary = pickle.load(open("final_project/final_project_dataset_modified.pkl", mode="rb"))
 
@@ -56,7 +56,8 @@ feature_train, feature_test, target_train, target_test = train_test_split(featur
 
 
 class MachineLearningAlgorithms(object):
-    def classify_nb(self, features_train, labels_train, features_test, labels_test):
+    @staticmethod
+    def classify_nb(features_train, labels_train, features_test, labels_test):
         from sklearn.naive_bayes import GaussianNB  # --> gaussian naive bayes
         from sklearn.metrics import accuracy_score
         classifier = GaussianNB()
@@ -67,10 +68,10 @@ class MachineLearningAlgorithms(object):
         print("accuracy:", accuracy * 100, "%", "--> naive bayes")
         return classifier
 
-    def classify_svm(self, features_train, labels_train, features_test, labels_test):
+    @staticmethod
+    def classify_svm(features_train, labels_train, features_test, labels_test):
         from sklearn.svm import SVC  # --> support vector classifier
         from sklearn.metrics import accuracy_score
-        from sklearn.metrics import f1_score
         features_train_less = features_train[:int(len(features_train) / 10)]
         labels_train_less = labels_train[:int(len(labels_train) / 10)]
         classifier = SVC(kernel='rbf',
@@ -90,7 +91,8 @@ class MachineLearningAlgorithms(object):
         # print("F1 score:", f1_score(labels_test, labels_predicted))
         return classifier
 
-    def classify_dt(self, features_train, labels_train, features_test, labels_test):
+    @staticmethod
+    def classify_dt(features_train, labels_train, features_test, labels_test):
         from sklearn.tree import DecisionTreeClassifier
         from sklearn.metrics import accuracy_score
         # stop further split when node has only 40 samples remaining
@@ -101,7 +103,8 @@ class MachineLearningAlgorithms(object):
         print("accuracy:", accuracy * 100, "%", "--> decision tree")
         return classifier
 
-    def classify_adaboost(self, features_train, labels_train, features_test, labels_test):
+    @staticmethod
+    def classify_adaboost(features_train, labels_train, features_test, labels_test):
         from sklearn.ensemble import AdaBoostClassifier
         from sklearn.metrics import accuracy_score
         # using 100 weak estimators --> ensemble
@@ -112,7 +115,8 @@ class MachineLearningAlgorithms(object):
         print("accuracy:", accuracy * 100, "%", "--> adaboost")
         return classifier
 
-    def classify_random_forest(self, features_train, labels_train, features_test, labels_test):
+    @staticmethod
+    def classify_random_forest(features_train, labels_train, features_test, labels_test):
         from sklearn.ensemble import RandomForestClassifier
         from sklearn.metrics import accuracy_score
         classifier = RandomForestClassifier(
@@ -123,20 +127,24 @@ class MachineLearningAlgorithms(object):
         print("accuracy:", accuracy * 100, "%", "--> random forest")
         return classifier
 
-    def perform_linear_regression(self):
+    @staticmethod
+    def perform_linear_regression():
+
         """
         classifiers --> predict the class OF the features.
         regressions --> predict the target values FROM the features.
-        
+
         classifiers --> output is discrete
         regressions --> output is continuous
-                    --> also gives slope and intercept i.e. relation b/w feature and target
-        
+                        --> also gives slope and intercept i.e. relation b/w feature and target
+
         classifiers --> evaluation using accuracy score
         regressions --> evaluation using sse, r-square, gradient-descent
         """
         from sklearn.linear_model import LinearRegression, Lasso
+
         import matplotlib.pyplot as plt
+
         import numpy as np
         import random
         """
@@ -150,12 +158,12 @@ class MachineLearningAlgorithms(object):
         networth_test = []
         for i in range(0, 100, 3):
             age_train.append([i])
-            age_test.append([i + random.uniform(1, 2)])
+        age_test.append([i + random.uniform(1, 2)])
         for i in range(len(age_train)):
             # y = mx
             networth_train.append([float(slope * age_train[i][0])])
-            networth_test.append(
-                [float(random.uniform(5, 8) * age_train[i][0])])
+        networth_test.append(
+            [float(random.uniform(5, 8) * age_train[i][0])])
 
         regression_model = LinearRegression()
         lasso_model = Lasso(alpha=0.1)  # alpha=0 --> use linear regression
@@ -163,8 +171,8 @@ class MachineLearningAlgorithms(object):
         lasso_model.fit(age_train, networth_train)
         networth_predicted = regression_model.predict(age_test)
         networth_predicted_lasso = lasso_model.predict(age_test)
-        print("predicted networth for age 34:", regression_model.predict([[34]]))
-        print("predicted networth for age 34:", lasso_model.predict([[34]]))
+        print("predicted net worth for age 34:", regression_model.predict([[34]]))
+        print("predicted net worth for age 34:", lasso_model.predict([[34]]))
         print("slope:", regression_model.coef_)
         print("intercept:", regression_model.intercept_)
         print("lasso slope:", lasso_model.coef_)
@@ -197,7 +205,8 @@ class MachineLearningAlgorithms(object):
         plt.ylabel("net worth")
         plt.show()
 
-    def kmeans_cluster(self, features):
+    @staticmethod
+    def kmeans_cluster(features):
         from sklearn.cluster import KMeans
         kmeans_cluster = KMeans(
             n_clusters=2,  # how many clusters
@@ -211,7 +220,8 @@ class MachineLearningAlgorithms(object):
         centroids = kmeans_cluster.cluster_centers_  # predicted centroids
         return predicted_target, centroids
 
-    def feature_rescale(self, arr):
+    @staticmethod
+    def feature_rescale(arr):
         import numpy as np
         from sklearn.preprocessing import MinMaxScaler
         rescaled = []
@@ -231,12 +241,13 @@ class MachineLearningAlgorithms(object):
         # list notation
         arr_3 = [115., 140., 175.]
 
-        scaler = MinMaxScaler()
+        scalar = MinMaxScaler()
         # doesn't accept list, requires np array or matrix
-        print(scaler.fit_transform(arr_2))
+        print(scalar.fit_transform(arr_2))
         return rescaled
 
-    def count_vectorizer(self):
+    @staticmethod
+    def count_vectorizer():
         from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
         train_corpus = ["hello earth, from mars",
                         "she likes to eat", "lets get some food"]
@@ -283,7 +294,8 @@ class MachineLearningAlgorithms(object):
         # compare with vector_count
         print("tf-idf count:", vectorizer.fit_transform(train_corpus).toarray())
 
-    def stop_words(self):
+    @staticmethod
+    def stop_words():
         """
             stopwords --> words which have high frequency and low importance
             nltk --> natural language toolkit
@@ -308,7 +320,8 @@ class MachineLearningAlgorithms(object):
             features = filter(lambda condition: condition != s, features)
         print("after:", len(features))
 
-    def stemmering(self):
+    @staticmethod
+    def stemmering():
         """
         stemmer --> get the unique word from collection of words
         """
@@ -321,7 +334,8 @@ class MachineLearningAlgorithms(object):
         print("plural:", plurals)
         print("singles:", singles)
 
-    def text_classification(self):
+    @staticmethod
+    def text_classification():
         from sklearn.feature_extraction.text import CountVectorizer
         from nltk.corpus import stopwords
         from nltk.stem.porter import PorterStemmer
@@ -349,7 +363,8 @@ class MachineLearningAlgorithms(object):
         for _index_ in range(len(feature_list)):
             print(feature_list[_index_], ":", vector_count[0][_index_])
 
-    def principal_component_analysis(self, train=feature_train, test=feature_test):
+    @staticmethod
+    def principal_component_analysis(train=feature_train, test=feature_test):
         from sklearn.decomposition import PCA
         # how many components
         pca = PCA(n_components=2)
@@ -362,7 +377,8 @@ class MachineLearningAlgorithms(object):
         print("Principal Components: ", pc_values)
         return pca.transform(train), pca.transform(test)
 
-    def perform_k_fold_and_grid_search(self, data):
+    @staticmethod
+    def perform_k_fold_and_grid_search(data):
         from sklearn.svm import SVC
         from sklearn.metrics import accuracy_score
         from sklearn.model_selection import StratifiedKFold
