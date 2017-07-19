@@ -194,19 +194,41 @@ class MachineLearningAlgorithms(object):
         plt.show()
 
     @staticmethod
+    def outlier_cleaner(predicted_labels, features, labels):
+        error_list = []
+        for i in range(len(predicted_labels)):
+            # create list of tuple(index, error)
+            error_list.append(tuple((i, (predicted_labels[i][0] - labels[i][0]) ** 2)))
+
+        cleaned_data = []
+        # sort by error where error --> tup[1]
+        # remove 10% max error element
+        # create list of (ages, net_worth, error)
+        for _tuple_ in sorted(error_list, key=lambda tup: tup[1])[:int(len(features) * 0.9)]:
+            _index_ = _tuple_[0]
+            cleaned_data.append(tuple((features[_index_][0], labels[_index_][0], _tuple_[1])))
+        return cleaned_data
+
+    @staticmethod
     def kmeans_cluster(features):
         from sklearn.cluster import KMeans
-        kmeans_cluster = KMeans(
-            n_clusters=2,  # how many clusters
-            n_init=10,  # how many times initialize with random centroids
-            max_iter=400,  # max iterations if tolerance not reached
+        clustering = KMeans(
+            # how many clusters
+            n_clusters=2,
+            # how many times initialize with random centroids
+            n_init=10,
+            # max iterations if tolerance not reached
+            max_iter=400,
             tol=1e-4
         )
-        kmeans_cluster.fit(features)  # features --> list of features
-        predicted_target = kmeans_cluster.predict(
-            features)  # no labels --> unsupervised
-        centroids = kmeans_cluster.cluster_centers_  # predicted centroids
-        return predicted_target, centroids
+        # features --> list of features
+        clustering.fit(features)
+        # no labels --> unsupervised
+        # predict which feature belongs to which cluster
+        predicted_clusters = clustering.predict(features)
+        # predicted centroids
+        centroids = clustering.cluster_centers_
+        return predicted_clusters, centroids
 
     @staticmethod
     def feature_rescale(arr):
@@ -352,7 +374,7 @@ class MachineLearningAlgorithms(object):
             print(feature_list[_index_], ":", vector_count[0][_index_])
 
     @staticmethod
-    def principal_component_analysis(train=feature_train, test=feature_test):
+    def principal_component_analysis(train, test):
         from sklearn.decomposition import PCA
         # how many components
         pca = PCA(n_components=2)
@@ -418,19 +440,24 @@ features_list = [
     "expenses"
 ]
 
-raw_data = feature_format(dictionary, features_list, remove_any_zeroes=True)
-target, features = target_feature_split(raw_data)
-feature_train, feature_test, target_train, target_test = train_test_split(features,
-                                                                          target,
-                                                                          test_size=0.3,
-                                                                          random_state=42)
 
-ml = MachineLearningAlgorithms()
-# SVM with features
-ml.classify_svm(feature_train, target_train, feature_test, target_test)
-pca_train_, pca_test_ = ml.principal_component_analysis(feature_train, feature_test)
-# SVM with principle components
-ml.classify_svm(pca_train_, target_train, pca_test_, target_test)
+def __main__():
+    raw_data = feature_format(dictionary, features_list, remove_any_zeroes=True)
+    target, features = target_feature_split(raw_data)
+    feature_train, feature_test, target_train, target_test = train_test_split(features,
+                                                                              target,
+                                                                              test_size=0.3,
+                                                                              random_state=42)
 
-# k fold train/test splitting
-ml.perform_k_fold_and_grid_search(raw_data)
+    ml = MachineLearningAlgorithms()
+    # SVM with features
+    ml.classify_svm(feature_train, target_train, feature_test, target_test)
+    pca_train_, pca_test_ = ml.principal_component_analysis(feature_train, feature_test)
+    # SVM with principle components
+    ml.classify_svm(pca_train_, target_train, pca_test_, target_test)
+    ml.kmeans_cluster(feature_train)
+    # k fold train/test splitting
+    ml.perform_k_fold_and_grid_search(raw_data)
+
+
+__main__()

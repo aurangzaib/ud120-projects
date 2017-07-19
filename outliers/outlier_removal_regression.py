@@ -5,7 +5,7 @@ import numpy
 import matplotlib.pyplot as plt
 import pickle
 from sklearn.linear_model import LinearRegression
-from outlier_cleaner import outlierCleaner
+from outlier_cleaner import outlier_cleaner
 
 # load up some practice data with outliers in it
 ages = pickle.load(open("practice_outliers_ages.pkl", "r"))
@@ -44,7 +44,7 @@ plt.scatter(ages, net_worths)
 cleaned_data = []
 try:
     predictions = reg.predict(ages_train)
-    cleaned_data = outlierCleaner(predictions, ages_train, net_worths_train)
+    cleaned_data = outlier_cleaner(predictions, ages_train, net_worths_train)
 except NameError:
     print("your regression object doesn't exist, or isn't name reg")
     print("can't make predictions to use in identifying outliers")
