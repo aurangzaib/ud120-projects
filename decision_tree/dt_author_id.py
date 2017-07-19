@@ -9,7 +9,6 @@
 """
 
 import sys
-from time import time
 from sklearn.tree import DecisionTreeClassifier
 from time import time
 from sklearn.metrics import accuracy_score
@@ -32,23 +31,23 @@ labels_train = labels_train[:int(len(labels_train) / reduce_size)]
 number of data points --> len(features_train) --> rows
 number of features    --> len(features_train[0]) --> columns
 """
-classifier_decision_tree = DecisionTreeClassifier(min_samples_split=40,
-                                                  # presort=True
-                                                  # speed up the finding of best splits in fitting
-                                                  # on large data set, it may slow down the training process
-                                                  )
-print ("number of features in data set:", len(features_train[0]))
+classifier = DecisionTreeClassifier(min_samples_split=40,
+                                    presort=True
+                                    # speed up the finding of best splits in fitting
+                                    # on large data set, it may slow down the training process
+                                    )
+print("number of features in data set:", len(features_train[0]))
 # changing percentile --> SelectPercentile --> email_preprocess --> controls # of features
 
 # min_samples_split --> 2 has 90% accuracy
 # min_samples_split --> 30,40,45 has 91% accuracy
 train_time = time()
-classifier_decision_tree.fit(features_train, labels_train)
-print ("dt training time:", round(time() - train_time, 3), "s")
+classifier.fit(features_train, labels_train)
+print("dt training time:", round(time() - train_time, 3), "s")
 
 predict_time = time()
-labels_predicted = classifier_decision_tree.predict(features_test)
-print ("dt prediction time:", round(time() - predict_time, 3), "s")
+labels_predicted = classifier.predict(features_test)
+print("dt prediction time:", round(time() - predict_time, 3), "s")
 
 accuracy_tree = accuracy_score(labels_test, labels_predicted)
 
@@ -66,6 +65,6 @@ for v in labels_predicted:
     elif v == 0:
         sara_found += 1
 
-print ("number of emails from chris:", chris_found)
-print ("number of emails from sara:", sara_found)
-print ("decision tree accuracy:", accuracy_tree)
+print("number of emails from chris:", chris_found)
+print("number of emails from sara:", sara_found)
+print("decision tree accuracy:", accuracy_tree)

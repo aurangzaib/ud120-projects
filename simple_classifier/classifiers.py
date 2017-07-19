@@ -27,43 +27,25 @@
 |__ K Fold                  |__ Train/Test Features Split
 """
 from __future__ import print_function
-# import sys
-import pickle
-from sklearn.model_selection import train_test_split
-from tools.feature_format import feature_format, target_feature_split
+import sys
 
-# sys.path.append("tools/")
+sys.path.append("tools/")
+import pickle
+
+from sklearn.model_selection import train_test_split
+from feature_format import feature_format, target_feature_split
 
 dictionary = pickle.load(open("final_project/final_project_dataset_modified.pkl", mode="rb"))
-
-# list the features you want to look at
-# first item in the list will be the target feature
-features_list = [
-    # target
-    "bonus",
-    # features
-    "long_term_incentive",
-    "salary",
-    "expenses"
-]
-
-raw_data = feature_format(dictionary, features_list, remove_any_zeroes=True)
-target, features = target_feature_split(raw_data)
-feature_train, feature_test, target_train, target_test = train_test_split(features,
-                                                                          target,
-                                                                          test_size=0.3,
-                                                                          random_state=42)
 
 
 class MachineLearningAlgorithms(object):
     @staticmethod
     def classify_nb(features_train, labels_train, features_test, labels_test):
-        from sklearn.naive_bayes import GaussianNB  # --> gaussian naive bayes
+        from sklearn.naive_bayes import GaussianNB
         from sklearn.metrics import accuracy_score
         classifier = GaussianNB()
         classifier.fit(features_train, labels_train)
         labels_predicted = classifier.predict(features_test)
-        # accuracy_score --> compare test and predicted labels
         accuracy = accuracy_score(labels_test, labels_predicted)
         print("accuracy:", accuracy * 100, "%", "--> naive bayes")
         return classifier
@@ -119,8 +101,8 @@ class MachineLearningAlgorithms(object):
     def classify_random_forest(features_train, labels_train, features_test, labels_test):
         from sklearn.ensemble import RandomForestClassifier
         from sklearn.metrics import accuracy_score
-        classifier = RandomForestClassifier(
-            n_estimators=10, min_samples_split=40)
+        classifier = RandomForestClassifier(n_estimators=10,
+                                            min_samples_split=40)
         classifier.fit(features_train, labels_train)
         labels_predicted = classifier.predict(features_test)
         accuracy = accuracy_score(labels_test, labels_predicted)
@@ -132,14 +114,17 @@ class MachineLearningAlgorithms(object):
 
         """
         classifiers --> predict the class OF the features.
-        regressions --> predict the target values FROM the features.
+        regressions --> predict the labels FROM the features.
 
         classifiers --> output is discrete
         regressions --> output is continuous
-                        --> also gives slope and intercept i.e. relation b/w feature and target
+                    --> also gives slope and intercept i.e. relation b/w feature and labels
 
         classifiers --> evaluation using accuracy score
         regressions --> evaluation using sse, r-square, gradient-descent
+
+        age         --> feature
+        networth    --> label
         """
         from sklearn.linear_model import LinearRegression, Lasso
 
@@ -158,42 +143,45 @@ class MachineLearningAlgorithms(object):
         networth_test = []
         for i in range(0, 100, 3):
             age_train.append([i])
-        age_test.append([i + random.uniform(1, 2)])
+            age_test.append([i + random.uniform(1, 2)])
         for i in range(len(age_train)):
             # y = mx
             networth_train.append([float(slope * age_train[i][0])])
-        networth_test.append(
-            [float(random.uniform(5, 8) * age_train[i][0])])
+            networth_test.append([float(random.uniform(5, 8) * age_train[i][0])])
 
         regression_model = LinearRegression()
         lasso_model = Lasso(alpha=0.1)  # alpha=0 --> use linear regression
+
         regression_model.fit(age_train, networth_train)
         lasso_model.fit(age_train, networth_train)
-        networth_predicted = regression_model.predict(age_test)
-        networth_predicted_lasso = lasso_model.predict(age_test)
+
+        networth_predicted = regression_model.predict(X=age_test)
+        networth_predicted_lasso = lasso_model.predict(X=age_test)
+
         print("predicted net worth for age 34:", regression_model.predict([[34]]))
         print("predicted net worth for age 34:", lasso_model.predict([[34]]))
+
         print("slope:", regression_model.coef_)
         print("intercept:", regression_model.intercept_)
+
         print("lasso slope:", lasso_model.coef_)
         print("lasso intercept:", lasso_model.intercept_)
+
         # low score --> over fitting
         # input, output
         print("r square error   : ", regression_model.score(age_test, networth_test))
         print("lasso r square error   : ", lasso_model.score(age_test, networth_test))
         # mean(square(prediction - actual))
-        print("mean square error: ", np.mean(
-            (networth_predicted - networth_test) ** 2))
+        print("mean square error: ", np.mean((networth_predicted - networth_test) ** 2))
         """
-            SSE --> sum of squared error --> sum(actual - prediction) method to reduce regression errors
+            SSE --> sum of squared error --> sum((actual - prediction)^2) method to reduce regression errors
             SSE --> ordinary least square (OLS) & Gradient Descent
             Gradient Descent:
-                yi = yi  + data_weight * ( xi - yi )
+                yi = yi + data_weight * ( xi - yi )
                 yi = yi + smooth_weight * ( y(i-1) + y(i+1) - 2yi )
             Problem with SSE --> SSE increases by increasing the data points even if the fit is not getting worse.
             
-            R Square Error:
-            0(Worst Fit) < R < 1(Best Fit) 
+            R Square Error   --> 0(Worst Fit) < R < 1(Best Fit) 
         """
         plt.clf()
         plt.scatter(age_train, networth_train,
@@ -342,7 +330,7 @@ class MachineLearningAlgorithms(object):
         sw = stopwords.words("english")
         corpus = 'This is a normal looking text. it contains a lot of insignificant texts. ' \
                  'Ok remove that text. also, ' \
-                 'apply the stemming so that we can remove repeat repetition ' \
+                 'apply the stemming so that we can remove repeat repetition. ' \
                  'repetitive health healthy healthiness sick sickness '' \
                 ''die dying dies died ' \
                  'done do does go went gone going see sees seeing'
@@ -418,6 +406,24 @@ class MachineLearningAlgorithms(object):
         labels_prediction = svm_classifier.predict(features_test)
         print("accuracy score: ", accuracy_score(labels_test, labels_prediction) * 100, "%")
 
+
+# list the features you want to look at
+# first item in the list will be the target feature
+features_list = [
+    # target
+    "bonus",
+    # features
+    "long_term_incentive",
+    "salary",
+    "expenses"
+]
+
+raw_data = feature_format(dictionary, features_list, remove_any_zeroes=True)
+target, features = target_feature_split(raw_data)
+feature_train, feature_test, target_train, target_test = train_test_split(features,
+                                                                          target,
+                                                                          test_size=0.3,
+                                                                          random_state=42)
 
 ml = MachineLearningAlgorithms()
 # SVM with features

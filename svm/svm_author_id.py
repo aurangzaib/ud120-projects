@@ -32,7 +32,7 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
     its same as image processing. opencv.
 
-    compare time taking of naive bayes and support vector machine :
+    compare time taking of NB and SVM :
 
     svm training time: 5.947 s
     svm prediction time: 7.074 s
@@ -54,21 +54,21 @@ reduce_size = 10
 # accuracy is 88.8% which is very good for 1% features (data set)
 features_train = features_train[:int(len(features_train) / reduce_size)]
 labels_train = labels_train[:int(len(labels_train) / reduce_size)]
-print ("number of features in data set:", len(features_train[0]))
+print("number of features in data set:", len(features_train[0]))
 # changing percentile --> SelectPercentile --> email_preprocess -->
 # controls # of features
 
 # create a support vector classifier
-classifier_svm = SVC(kernel="rbf",  # try linear, rbf
+classifier = SVC(kernel="rbf",  # try linear, rbf
                      C=10000)  # try 1, 10, 1000, 10000
 
 time_svm = time()
-classifier_svm.fit(features_train, labels_train)
-print ("svm training time:", round(time() - time_svm, 3), "s")
+classifier.fit(features_train, labels_train)
+print("svm training time:", round(time() - time_svm, 3), "s")
 
 time_predict_svm = time()
-labels_predicted = classifier_svm.predict(features_test)
-print ("svm prediction time:", round(time() - time_predict_svm, 3), "s")
+labels_predicted = classifier.predict(features_test)
+print("svm prediction time:", round(time() - time_predict_svm, 3), "s")
 
 # find the accuracy of the predicted labels against the test labels
 # never check the accuracy against labels_train
@@ -88,6 +88,6 @@ for v in labels_predicted:
     elif v == 0:
         sara_found += 1
 
-print ("number of emails from chris:", chris_found)
-print ("number of emails from sara:", sara_found)
-print ("support vector accuracy:", accuracy_svm)
+print("number of emails from chris:", chris_found)
+print("number of emails from sara:", sara_found)
+print("support vector accuracy:", accuracy_svm)

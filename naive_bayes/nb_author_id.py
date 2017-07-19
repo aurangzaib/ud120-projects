@@ -18,21 +18,20 @@ from sklearn.metrics import accuracy_score
 sys.path.append("tools/")
 from email_preprocess import preprocess
 
-# features_train and features_test are the features for the training
-# and testing datasets, respectively
-# labels_train and labels_test are the corresponding item labels
+# features  --> email words
+# labels    --> email authors
 features_train, features_test, labels_train, labels_test = preprocess()
 """
     computing the accuracy of the gaussian naive bayesian classifier
 
     we should train the classifier on different data samples to generalize it
-    otherwise the algorithm will be 'over fit' for a given data
-    so, we try to save 10% of train data and use it as part of test data without first training on it.
+    otherwise the algorithm will overfit for a given data
+    10% of train data is used as test data without first training on it.
 
     train data --> data on which classifier is trained using fit (features, labels)
     test data  --> data on which the prediction of classifier is tested
 
-    so after training (fitting), we provide classifier features and predict the labels.
+    so after training (fitting), we provide classifier test features and predict the labels.
     
     to report results of the classifier, run it on the test data and report the predictions. 
     
@@ -48,27 +47,27 @@ features_train, features_test, labels_train, labels_test = preprocess()
     
     on 10% data set, with rbf ans C=1000, svm has 89% accuracy
 """
-reduce_size = 100
+reduce_factor = 100
+qntty = int(len(features_train) / reduce_factor)
 # reducing number of data points -- SVM is very slow for large data set
 # providing just 1% of the features
 # accuracy is 88.8% which is very good for 1% features (data set)
-features_train = features_train[:int(len(features_train) / reduce_size)]
-labels_train = labels_train[:int(len(labels_train) / reduce_size)]
-print ("number of features in data set:", len(features_train[0]))
-# changing percentile --> SelectPercentile --> email_preprocess -->
-# controls # of features
+features_train = features_train[:qntty]
+labels_train = labels_train[:qntty]
+print("number of features in dataset:", len(features_train[0]))
+# changing percentile --> SelectPercentile --> email_preprocess --> controls # of features
 
 # create gaussian naive bayes classifier
-classifier_nb = GaussianNB()
+classifier = GaussianNB()
 
 time_bayes = time()
 # train classifier by fitting training data
-classifier_nb.fit(features_train, labels_train)
-print ("bayes training time:", round(time() - time_bayes, 3), "s")
+classifier.fit(features_train, labels_train)
+print("bayes training time:", round(time() - time_bayes, 3), "s")
 time_predict_bayes = time()
 # predict the labels by providing test features
-labels_predicted = classifier_nb.predict(features_test)
-print ("bayes prediction time:", round(time() - time_predict_bayes, 3), "s")
+labels_predicted = classifier.predict(features_test)
+print("bayes prediction time:", round(time() - time_predict_bayes, 3), "s")
 
 # find the accuracy of the predicted labels against the test labels
 # never check the accuracy against labels_train
@@ -87,6 +86,6 @@ for v in labels_predicted:
     elif v == 0:
         sara_found += 1
 
-print ("number of emails from chris:", chris_found)
-print ("number of emails from sara:", sara_found)
-print ("naive bayes accuracy:", accuracy)
+print("number of emails from chris:", chris_found)
+print("number of emails from sara:", sara_found)
+print("naive bayes accuracy:", accuracy)
