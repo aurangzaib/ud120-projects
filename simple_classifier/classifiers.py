@@ -231,18 +231,16 @@ class MachineLearningAlgorithms(object):
         return predicted_clusters, centroids
 
     @staticmethod
-    def feature_rescale(arr):
+    def feature_rescale(_array_):
         import numpy as np
         from sklearn.preprocessing import MinMaxScaler
         rescaled = []
-        list_max = max(arr)
-        list_min = min(arr)
+        list_max = max(_array_)
+        list_min = min(_array_)
         if list_max == list_min:
-            rescaled = [0.5 for row in range(len(arr))]
+            rescaled = [0.5 for row in range(len(_array_))]
         else:
-            for a in arr:
-                rescaled.append(float(a - list_min) /
-                                float(list_max - list_min))
+            rescaled = (_array_ - list_min) / (list_max - list_min)
 
         # matrix notation
         arr_1 = np.matrix('115.; 140.; 175.')
@@ -260,7 +258,7 @@ class MachineLearningAlgorithms(object):
     def count_vectorizer():
         from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
         train_corpus = ["hello earth, from mars",
-                        "she likes to eat", "lets get some food"]
+                        "she likes to, to eat", "lets get some food"]
         test_corpus = ["holly shit, look at the mars, there is some food food"]
         """
         1-gram --> each word is considered in isolation and they have no new meanings when used together
@@ -288,8 +286,9 @@ class MachineLearningAlgorithms(object):
             to resolve this, we use 2-grams.
             solves problem of Bag of Words problem (1-gram)
         """
-        vectorizer = CountVectorizer(
-            min_df=1, ngram_range=(1, 2), token_pattern=r'\b\w+\b')
+        vectorizer = CountVectorizer(min_df=1,
+                                     ngram_range=(1, 2),
+                                     token_pattern=r'\b\w+\b')
         analyzer = vectorizer.build_analyzer()
         print("2 grams:", analyzer("Bull Chicago"))
         """
@@ -313,6 +312,7 @@ class MachineLearningAlgorithms(object):
         """
         from nltk.corpus import stopwords
         from sklearn.feature_extraction.text import CountVectorizer
+        # nltk.download('all', halt_on_error=False)
         corpus = [
             'This is a text which contains several trivial '
             'and some very important words. '
@@ -320,18 +320,20 @@ class MachineLearningAlgorithms(object):
         vectorizer = CountVectorizer()
         vectorizer.fit_transform(corpus)
         features = vectorizer.get_feature_names()
-        sw = stopwords.words("english")
-        print("total stopwords in german:", len(stopwords.words("german")))
-        print("total stopwords in english:", len(sw))
-        print("stopwords:", sw)
+        sw_en = stopwords.words("english")
+        sw_de = stopwords.words("german")
+        print("total stopwords in german:", len(sw_de))
+        print("total stopwords in english:", len(sw_en))
+        print("stopwords:", sw_en)
 
         print("before:", len(features))
-        for s in sw:
+        # remove stopwords from the text
+        for s in sw_en:
             features = filter(lambda condition: condition != s, features)
         print("after:", len(features))
 
     @staticmethod
-    def stemmering():
+    def stemming():
         """
         stemmer --> get the unique word from collection of words
         """
@@ -340,7 +342,7 @@ class MachineLearningAlgorithms(object):
         plurals = ['die', 'died', 'dying', 'dies', 'died',
                    'responsive', 'responsivity', 'unresponsive']
         stemmer = PorterStemmer()
-        singles = [stemmer.stem(plural) for plural in plurals]
+        singles = [stemmer.stem(single) for single in plurals]
         print("plural:", plurals)
         print("singles:", singles)
 
@@ -361,17 +363,17 @@ class MachineLearningAlgorithms(object):
         # removing stopwords
         for s in sw:
             corpus_list = filter(lambda condition: condition != s, corpus_list)
-        # stemmering
+        # stemming
         stemmer = PorterStemmer()
         corpus_list = [stemmer.stem(_corpus_) for _corpus_ in corpus_list]
+        # list --> string
         corpus = [' '.join(corpus_list)]
         # vector counts
         vectorizer = CountVectorizer(min_df=1, ngram_range=(0, 1))
-        vectorizer.fit(corpus)
-        vector_count = vectorizer.transform(corpus).toarray()
-        feature_list = vectorizer.get_feature_names()
-        for _index_ in range(len(feature_list)):
-            print(feature_list[_index_], ":", vector_count[0][_index_])
+        vector_count = vectorizer.fit_transform(corpus).toarray()
+        features = vectorizer.get_feature_names()
+        for feature, count in zip(features, vector_count[0]):
+            print("{}: {}".format(feature, count))
 
     @staticmethod
     def principal_component_analysis(train, test):
@@ -442,13 +444,13 @@ features_list = [
 
 
 def __main__():
+    import numpy as np
     raw_data = feature_format(dictionary, features_list, remove_any_zeroes=True)
     target, features = target_feature_split(raw_data)
     feature_train, feature_test, target_train, target_test = train_test_split(features,
                                                                               target,
                                                                               test_size=0.3,
                                                                               random_state=42)
-
     ml = MachineLearningAlgorithms()
     # SVM with features
     ml.classify_svm(feature_train, target_train, feature_test, target_test)
@@ -458,6 +460,9 @@ def __main__():
     ml.kmeans_cluster(feature_train)
     # k fold train/test splitting
     ml.perform_k_fold_and_grid_search(raw_data)
+    # feature scaling
+    print("rescaled: {}".format(ml.feature_rescale(np.array([50.0, 99.0, 22.3, 88.0]))))
+    ml.text_classification()
 
 
 __main__()
