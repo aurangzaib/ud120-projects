@@ -4,7 +4,7 @@
                             |__ Support Vector Machine
                             |__ Decision Tree
                             |__ Adaptive Boost --> ensemble Decision Trees
-                            |__ Random Forest  --> ensember Decision Trees
+                            |__ Random Forest  --> ensemble Decision Trees
 |__ Regression            --> Continuous Output, Slope, Intercept, Predicts value of the features
 |__ Cluster               --> Unsupervised Learning
                             |__ KMeans
@@ -57,18 +57,17 @@ class MachineLearningAlgorithms(object):
         features_train_less = features_train[:int(len(features_train) / 10)]
         labels_train_less = labels_train[:int(len(labels_train) / 10)]
         classifier = SVC(kernel='rbf',
-                         gamma=10.,  # sensitive to margins of near features
+                         gamma=10.,  # sensitive to margins of far features
                          C=1000)  # more accurate less smooth
-        # train on big data set --> high accuracy
+        # train on big data set
         classifier.fit(features_train, labels_train)
         labels_predicted = classifier.predict(features_test)
-        # train on small data set --> less accuracy
+        accuracy = accuracy_score(labels_test, labels_predicted)
+        print("accuracy:", accuracy * 100, "%", "--> support vector machine")
+        # train on small data set
         classifier.fit(features_train_less, labels_train_less)
         labels_predicted_less = classifier.predict(features_test)
-        # find accuracy by comparing test and predicted features
-        accuracy = accuracy_score(labels_test, labels_predicted)
         accuracy_less = accuracy_score(labels_test, labels_predicted_less)
-        print("accuracy:", accuracy * 100, "%", "--> support vector machine")
         print("accuracy:", accuracy_less * 100, "%", "--> support vector machine with 10% data")
         # print("F1 score:", f1_score(labels_test, labels_predicted))
         return classifier
@@ -121,15 +120,13 @@ class MachineLearningAlgorithms(object):
                     --> also gives slope and intercept i.e. relation b/w feature and labels
 
         classifiers --> evaluation using accuracy score
-        regressions --> evaluation using sse, r-square, gradient-descent
+        regressions --> evaluation using sse, r-square and optimized using gradient-descent
 
         age         --> feature
         networth    --> label
         """
         from sklearn.linear_model import LinearRegression, Lasso
-
         import matplotlib.pyplot as plt
-
         import numpy as np
         import random
         """
@@ -137,10 +134,8 @@ class MachineLearningAlgorithms(object):
         networth --> target
         """
         slope = 6.5
-        age_train = []
-        age_test = []
-        networth_train = []
-        networth_test = []
+        age_train, networth_train = [], []
+        age_test, networth_test = [], []
         for i in range(0, 100, 3):
             age_train.append([i])
             age_test.append([i + random.uniform(1, 2)])
@@ -150,12 +145,11 @@ class MachineLearningAlgorithms(object):
             networth_test.append([float(random.uniform(5, 8) * age_train[i][0])])
 
         regression_model = LinearRegression()
-        lasso_model = Lasso(alpha=0.1)  # alpha=0 --> use linear regression
-
         regression_model.fit(age_train, networth_train)
-        lasso_model.fit(age_train, networth_train)
-
         networth_predicted = regression_model.predict(X=age_test)
+
+        lasso_model = Lasso(alpha=0.1)  # if alpha=0 --> use linear regression
+        lasso_model.fit(age_train, networth_train)
         networth_predicted_lasso = lasso_model.predict(X=age_test)
 
         print("predicted net worth for age 34:", regression_model.predict([[34]]))
@@ -174,8 +168,8 @@ class MachineLearningAlgorithms(object):
         # mean(square(prediction - actual))
         print("mean square error: ", np.mean((networth_predicted - networth_test) ** 2))
         """
-            SSE --> sum of squared error --> sum((actual - prediction)^2) method to reduce regression errors
-            SSE --> ordinary least square (OLS) & Gradient Descent
+            SSE --> sum of squared error --> sum((actual - prediction)^2) to find regression errors
+            SSE --> ordinary least square (OLS) & Gradient Descent to reduce regression errors
             Gradient Descent:
                 yi = yi + data_weight * ( xi - yi )
                 yi = yi + smooth_weight * ( y(i-1) + y(i+1) - 2yi )
@@ -184,8 +178,7 @@ class MachineLearningAlgorithms(object):
             R Square Error   --> 0(Worst Fit) < R < 1(Best Fit) 
         """
         plt.clf()
-        plt.scatter(age_train, networth_train,
-                    color="orange", label="training")
+        plt.scatter(age_train, networth_train, color="orange", label="training")
         plt.scatter(age_test, networth_test, color="red", label="test")
         plt.plot(age_test, networth_predicted, 'green', label="predictions")
         plt.legend(loc=2)
@@ -219,6 +212,7 @@ class MachineLearningAlgorithms(object):
             n_init=10,
             # max iterations if tolerance not reached
             max_iter=400,
+            # tolerance
             tol=1e-4
         )
         # features --> list of features
@@ -297,7 +291,7 @@ class MachineLearningAlgorithms(object):
             a, um, uh, is --> not of interest <-- they shadow the frequency of rare but interesting words.
             tf-idf --> re-weight the features in float suitable for classifier.
             it uses euclidean norms
-            V-norm = V / ||V||2 = V / root(V1^2 + v2^2 + ...)
+            V-norm --> V / ||V||2 --> V / root(V1^2 + v2^2 + ...)
         """
         vectorizer = TfidfVectorizer()
         # compare with vector_count
@@ -329,7 +323,7 @@ class MachineLearningAlgorithms(object):
         print("before:", len(features))
         # remove stopwords from the text
         for s in sw_en:
-            features = filter(lambda condition: condition != s, features)
+            features = filter(lambda feature: feature != s, features)
         print("after:", len(features))
 
     @staticmethod
@@ -345,6 +339,9 @@ class MachineLearningAlgorithms(object):
         singles = [stemmer.stem(single) for single in plurals]
         print("plural:", plurals)
         print("singles:", singles)
+        singles = []
+        for single in plurals:
+            singles.append(stemmer.stem(single))
 
     @staticmethod
     def text_classification():
@@ -362,13 +359,14 @@ class MachineLearningAlgorithms(object):
         corpus_list = corpus.split()
         # removing stopwords
         for s in sw:
-            corpus_list = filter(lambda condition: condition != s, corpus_list)
+            corpus_list = filter(lambda word: word != s, corpus_list)
         # stemming
         stemmer = PorterStemmer()
-        corpus_list = [stemmer.stem(_corpus_) for _corpus_ in corpus_list]
+        corpus_list = [stemmer.stem(word) for word in corpus_list]
         # list --> string
         corpus = [' '.join(corpus_list)]
         # vector counts
+
         vectorizer = CountVectorizer(min_df=1, ngram_range=(0, 1))
         vector_count = vectorizer.fit_transform(corpus).toarray()
         features = vectorizer.get_feature_names()
@@ -452,6 +450,7 @@ def __main__():
                                                                               test_size=0.3,
                                                                               random_state=42)
     ml = MachineLearningAlgorithms()
+    ml.perform_linear_regression()
     # SVM with features
     ml.classify_svm(feature_train, target_train, feature_test, target_test)
     pca_train_, pca_test_ = ml.principal_component_analysis(feature_train, feature_test)
